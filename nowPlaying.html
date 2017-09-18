@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+	<title> Now Playing</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<main role= "main">
+		<header role= "banner"> 
+			<h1>Now Playing</h1>
+		</header>
+		<form class= 'movie-search-form'>
+			<input type="text" class = 'search-query' name='user-search-term' placeholder= "Pick a genre...">
+
+			<button class= 'search-button'> Search </button>
+			<button class= 'random-search-button'> Random movie </button>
+
+			<section class= 'movie-info'>
+				<div class= movie-header> 
+					<h2> Movie title and poster goes here</h2>
+				</div>
+
+				<div class= 'movieDB-synopsis'>
+					<p> Info from movieDB goes here </p>
+				</div>
+
+				<div class= 'youtube-movie-trailer'>
+					<p> Insert youtube trailer here </p>
+				</div>
+
+				<div class= 'critics-section'>
+					<p> Include the top 4 critics reviews if possible </p>
+				</div>
+
+				<button class='seen-it-button'> I've Seen it</button>
+			</section>
+			
+
+		</form>
+
+
+	</main>
+
+
+	<script type = "text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src= "api.js"></script>
+</body>
+</html>
