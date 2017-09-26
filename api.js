@@ -9,6 +9,8 @@ const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
 
 let selectedGenre;
 let queryGenreID;
+let currentMovieTitle;
+
 //I have to make this global to be able to access it in 
 //getGenreID();
 
@@ -18,6 +20,7 @@ function searchMovie () {
 		selectedGenre= $('.search-query').val();
 		getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
 		getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
+		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 	})
 	//this is to be used with for the '.search-button'
 	//will prevent the form from being submitted and
@@ -83,7 +86,8 @@ function getDataFromYoutubeAPI(movieName, callback) {
 
 function displayMovieInformation (data) {
 	let currentMovieData = data.results[0];
-	console.log(currentMovieData.title);
+	currentMovieTitle = currentMovieData.title 
+	console.log(currentMovieTitle);
 	//this line will randomize most likely with the title
 	//added to list of already suggesting movies
 	// ---ADD FEATURE OF NO / YES/ MAYBE LIST ---
@@ -102,9 +106,16 @@ function displayMovieInformation (data) {
 	//pickanothermovie() is run
 }
 
-function showMovieTrailer(movieName) {
-	//pulls movie trailer from Youtube API to put into
-	//'.youtube-movie-trailer'
+function showMovieTrailer(youtubeData) {
+	let firstResult = youtubeData.items[0];
+	let officialTrailer = embedYoutubeVideo(firstResult);
+	$('.youtube-movie-trailer').html(officialTrailer);
+}
+
+function embedYoutubeVideo(result) {
+	return `<iframe width="560" height="315" 
+	src="https://www.youtube.com/embed/${result.id.videoId}" 
+	frameborder="0" allowfullscreen></iframe>`
 }
 
 function hideSearchResults() {
