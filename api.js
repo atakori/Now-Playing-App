@@ -10,6 +10,7 @@ const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
 let selectedGenre;
 let queryGenreID;
 let currentMovieTitle;
+let movieIndex= 0;
 let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
 					 10749,878,10770,53,10752,37]
 
@@ -23,6 +24,8 @@ function searchMovie () {
 		getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
 		getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
 		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+		checkNotInterestedMovies();
+		revealSearchResults();
 	})
 	//this is to be used with for the '.search-button'
 	//will prevent the form from being submitted and
@@ -87,7 +90,7 @@ function getDataFromYoutubeAPI(movieName, callback) {
 }
 
 function displayMovieInformation (data) {
-	let currentMovieData = data.results[0];
+	let currentMovieData = data.results[movieIndex];
 	currentMovieTitle = currentMovieData.title 
 	console.log(currentMovieTitle);
 	//this line will randomize most likely with the title
@@ -121,8 +124,12 @@ function embedYoutubeVideo(result) {
 }
 
 function hideSearchResults() {
+	$('.movie-info').hide();
 	//hides all movie sections if nothing has 
 	//been search yet
+}
+function revealSearchResults() {
+	$('.movie-info').show();
 }
 
 function handleRandomMovieButton() {
@@ -132,15 +139,42 @@ function handleRandomMovieButton() {
 		queryGenreID = randomizedGenre;
 		getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
 		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+		checkNotInterestedMovies();
+		revealSearchResults();
 	})
 }
 
+function handleSeenItButton() {
+	$('.movie-search-form').on('click', '.seen-it-button', function(event) {
+		event.preventDefault();
+		pickanothermovie();
+		console.log('working');
+});
+}
+
 function pickanothermovie() {
+	getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
+	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+	checkNotInterestedMovies();
+	};
 	//add the movie to the notInterested array
 	// prevent form submission for '.seen-it-button'
 	//runs displaymovieInformation(), displayMovieTrailer(),
 	//again
-}
+
+function checkNotInterestedMovies() {
+	if (notInterested.find(movie => movie === currentMovieTitle)) {
+			movieIndex += 1;
+			pickanothermovie();
+		} else {
+			notInterested.push(currentMovieTitle);
+		}
+	};
+		//checks the notInterested array to see if a user has
+		//already seen the movie
+		//addst the movie if they have not
 
 $(searchMovie());
 $(handleRandomMovieButton());
+$(handleSeenItButton());
+hideSearchResults();
