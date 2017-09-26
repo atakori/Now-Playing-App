@@ -10,6 +10,8 @@ const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
 let selectedGenre;
 let queryGenreID;
 let currentMovieTitle;
+let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
+					 10749,878,10770,53,10752,37]
 
 //I have to make this global to be able to access it in 
 //getGenreID();
@@ -123,6 +125,16 @@ function hideSearchResults() {
 	//been search yet
 }
 
+function handleRandomMovieButton() {
+	$('.movie-search-form').on('click', '.random-search-button', function (event) {
+		event.preventDefault();
+		let randomizedGenre = movieDBGenres[Math.floor(Math.random()*movieDBGenres.length)];
+		queryGenreID = randomizedGenre;
+		getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
+		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+	})
+}
+
 function pickanothermovie() {
 	//add the movie to the notInterested array
 	// prevent form submission for '.seen-it-button'
@@ -131,3 +143,4 @@ function pickanothermovie() {
 }
 
 $(searchMovie());
+$(handleRandomMovieButton());
