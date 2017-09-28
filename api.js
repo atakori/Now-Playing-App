@@ -2,7 +2,9 @@ let notInterested = [];
 const movieDB_search_URL = "https://api.themoviedb.org/3/discover/movie";
 const movieDB_genre_URL =  "https://api.themoviedb.org/3/genre/movie/list";
 const movieDB_poster_URL = "https://image.tmdb.org/t/p/w500"
+let movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/movieID/reviews"
 const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
+
 
 //contains the movies that the user is not interested in 
 //watching
@@ -10,21 +12,23 @@ const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
 let selectedGenre;
 let queryGenreID;
 let currentMovieTitle;
+/*let movieID;*/
 let movieIndex= 0;
 let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
-					 10749,878,10770,53,10752,37]
-
-//I have to make this global to be able to access it in 
-//getGenreID();
+					 10749,878,10770,53,10752,37];
+					 // this should be made directly from the API
+					 //in case any are added in the future
+					 // -- not likely but just in case
 
 function searchMovie () {
 	$('.movie-search-form').on('click', '.search-button', function(event) {
 		event.preventDefault();
 		selectedGenre= $('.search-query').val();
 		getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
-		getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
-		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
-		checkNotInterestedMovies();
+		/*getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);*/
+		/*getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);*/
+		/*getReviewsFromMovieDBAPI(currentMovieTitle, displayUserReviews);*/
+		/*checkNotInterestedMovies();*/
 		revealSearchResults();
 	})
 	//this is to be used with for the '.search-button'
@@ -40,6 +44,7 @@ function changeGenreIntoGenreID (data) {
 	/*let movieGenre= data.genres.filter( obj => obj.name.toLowerCase() === selectedGenre.toLowerCase());*/
 	let movieGenre= data.genres.find(obj => obj.name.toLowerCase() === selectedGenre.toLowerCase());
 	queryGenreID = movieGenre.id;
+	getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
 	console.log(queryGenreID);
 	/*console.log(queryGenreID);*/
 	//needs to access genre /movie list and pull
@@ -73,6 +78,28 @@ function getDataFromMovieDBAPI(query, callback) {
 	//calls showMovieTrailer()
 }
 
+function getReviewsFromMovieDBAPI(query, callback) {
+	let dataRequest = {
+		api_key:'a916990541912af1edec4ebbf21fc10f',
+		page: 1
+		//this is used to get the user movie reviews from Movie DB
+	}
+
+	$.getJSON(movieDB_reviews_URL, dataRequest, callback);
+}
+
+function displayUserReviews(movieDBReviewData) {
+	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderReviews(item));
+	$('.critics-section').html(movieDBReviews);
+	//this is used to display the user reviews from MovieDB
+	// and/or filmcrave.com
+}
+
+function renderReviews(userReview) {
+	return `<li class= user-review> ${userReview.content} 
+	<div> Review by: ${userReview.author}</div></li>`
+}
+
 function getDataFromYoutubeAPI(movieName, callback) {
 	let dataRequest= {
 		part: 'snippet',
@@ -92,7 +119,10 @@ function getDataFromYoutubeAPI(movieName, callback) {
 function displayMovieInformation (data) {
 	let currentMovieData = data.results[movieIndex];
 	currentMovieTitle = currentMovieData.title 
-	console.log(currentMovieTitle);
+	movieID = currentMovieData.id;
+	movieDB_reviews_URL = movieDB_reviews_URL.replace("movieID", movieID);
+	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+	getReviewsFromMovieDBAPI(currentMovieTitle, displayUserReviews);
 	//this line will randomize most likely with the title
 	//added to list of already suggesting movies
 	// ---ADD FEATURE OF NO / YES/ MAYBE LIST ---
@@ -138,8 +168,7 @@ function handleRandomMovieButton() {
 		let randomizedGenre = movieDBGenres[Math.floor(Math.random()*movieDBGenres.length)];
 		queryGenreID = randomizedGenre;
 		getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
-		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
-		checkNotInterestedMovies();
+		/*checkNotInterestedMovies();*/
 		revealSearchResults();
 	})
 }
@@ -147,29 +176,29 @@ function handleRandomMovieButton() {
 function handleSeenItButton() {
 	$('.movie-search-form').on('click', '.seen-it-button', function(event) {
 		event.preventDefault();
-		pickanothermovie();
+		/*pickanothermovie();*/
 		console.log('working');
 });
 }
 
-function pickanothermovie() {
+/*function pickanothermovie() {
 	getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 	checkNotInterestedMovies();
-	};
+	};*/
 	//add the movie to the notInterested array
 	// prevent form submission for '.seen-it-button'
 	//runs displaymovieInformation(), displayMovieTrailer(),
 	//again
 
-function checkNotInterestedMovies() {
+/*function checkNotInterestedMovies() {
 	if (notInterested.find(movie => movie === currentMovieTitle)) {
 			movieIndex += 1;
 			pickanothermovie();
 		} else {
 			notInterested.push(currentMovieTitle);
 		}
-	};
+	};*/
 		//checks the notInterested array to see if a user has
 		//already seen the movie
 		//addst the movie if they have not
