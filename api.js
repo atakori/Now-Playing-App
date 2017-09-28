@@ -1,8 +1,8 @@
 let notInterested = [];
 const movieDB_search_URL = "https://api.themoviedb.org/3/discover/movie";
 const movieDB_genre_URL =  "https://api.themoviedb.org/3/genre/movie/list";
-const movieDB_poster_URL = "https://image.tmdb.org/t/p/w500"
-let movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/movieID/reviews"
+const movieDB_poster_URL = "https://image.tmdb.org/t/p/w500";
+let movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/movieID/reviews";
 const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
 
 
@@ -78,18 +78,21 @@ function getDataFromMovieDBAPI(query, callback) {
 	//calls showMovieTrailer()
 }
 
-function getReviewsFromMovieDBAPI(query, callback) {
+function getReviewsFromMovieDBAPI(moviesID, callback) {
 	let dataRequest = {
 		api_key:'a916990541912af1edec4ebbf21fc10f',
+		movie_id: moviesID,
 		page: 1
 		//this is used to get the user movie reviews from Movie DB
 	}
+	console.log(moviesID);
 
 	$.getJSON(movieDB_reviews_URL, dataRequest, callback);
 }
 
 function displayUserReviews(movieDBReviewData) {
 	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderReviews(item));
+	console.log(movieDBReviewData);
 	$('.critics-section').html(movieDBReviews);
 	//this is used to display the user reviews from MovieDB
 	// and/or filmcrave.com
@@ -120,9 +123,12 @@ function displayMovieInformation (data) {
 	let currentMovieData = data.results[movieIndex];
 	currentMovieTitle = currentMovieData.title 
 	movieID = currentMovieData.id;
-	movieDB_reviews_URL = movieDB_reviews_URL.replace("movieID", movieID);
+	console.log(movieID);
+	movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/" + movieID + "/reviews";
+	console.log(movieDB_reviews_URL);
+	console.log(currentMovieTitle);
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
-	getReviewsFromMovieDBAPI(currentMovieTitle, displayUserReviews);
+	getReviewsFromMovieDBAPI(movieID, displayUserReviews);
 	//this line will randomize most likely with the title
 	//added to list of already suggesting movies
 	// ---ADD FEATURE OF NO / YES/ MAYBE LIST ---
