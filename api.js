@@ -4,7 +4,7 @@ const movieDB_genre_URL =  "https://api.themoviedb.org/3/genre/movie/list";
 const movieDB_poster_URL = "https://image.tmdb.org/t/p/w500";
 let movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/movieID/reviews";
 const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
-
+const newYorkTimes_reviews_URL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
 
 //contains the movies that the user is not interested in 
 //watching
@@ -90,15 +90,40 @@ function getReviewsFromMovieDBAPI(moviesID, callback) {
 	$.getJSON(movieDB_reviews_URL, dataRequest, callback);
 }
 
+function getDataFromNYTimesAPI (movieTitle, callback) {
+	let dataRequest = {
+		apikey: 'bc0475617d3440aa97091e213868e01d',
+		query: movieTitle
+	}
+
+	$.getJSON(newYorkTimes_reviews_URL, dataRequest, callback);
+}
+
+function displayNYTimesReviews(reviewData) {
+	let reviewInfo = reviewData.results[0];
+	console.log(reviewInfo);
+	let NYTimesReview= renderCriticReview(reviewInfo);
+	console.log(NYTimesReview);
+	$('.critics-section').html(NYTimesReview);
+	//this is used to display the user reviews from MovieDB
+	// and/or filmcrave.com
+}
+
 function displayUserReviews(movieDBReviewData) {
-	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderReviews(item));
+	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderUserReviews(item));
 	console.log(movieDBReviewData);
 	$('.critics-section').html(movieDBReviews);
 	//this is used to display the user reviews from MovieDB
 	// and/or filmcrave.com
 }
 
-function renderReviews(userReview) {
+function renderCriticReview(criticReview) {
+	return `<li class= NY-times-review> ${criticReview.summary_short} 
+	<div> <a href= ${criticReview.link.url}> Read Full Review </a></div>
+	<div> Review by: ${criticReview.byline}</div></li>`
+}
+
+function renderUserReviews(userReview) {
 	return `<li class= user-review> ${userReview.content} 
 	<div> Review by: ${userReview.author}</div></li>`
 }
@@ -128,7 +153,8 @@ function displayMovieInformation (data) {
 	console.log(movieDB_reviews_URL);
 	console.log(currentMovieTitle);
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
-	getReviewsFromMovieDBAPI(movieID, displayUserReviews);
+	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
+	/*getReviewsFromMovieDBAPI(movieID, displayUserReviews);*/
 	//this line will randomize most likely with the title
 	//added to list of already suggesting movies
 	// ---ADD FEATURE OF NO / YES/ MAYBE LIST ---
