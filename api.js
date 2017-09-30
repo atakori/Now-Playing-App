@@ -1,5 +1,12 @@
 let notInterested = [];
+let userWatchList = [];
+let movieID;
+
 const movieDB_search_URL = "https://api.themoviedb.org/3/discover/movie";
+function movieDB_movie_search_URL () {
+	return `https://api.themoviedb.org/3/movie/${movieID}`;
+}
+
 const movieDB_genre_URL =  "https://api.themoviedb.org/3/genre/movie/list";
 const movieDB_poster_URL = "https://image.tmdb.org/t/p/w500";
 let movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/movieID/reviews";
@@ -12,7 +19,7 @@ const newYorkTimes_reviews_URL = "https://api.nytimes.com/svc/movies/v2/reviews/
 let selectedGenre;
 let queryGenreID;
 let currentMovieTitle;
-/*let movieID;*/
+let currentMovieData;
 let movieIndex= 0;
 let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
 					 10749,878,10770,53,10752,37];
@@ -20,12 +27,14 @@ let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
 					 //in case any are added in the future
 					 // -- not likely but just in case
 
+movieDB_movie_search_URL();
+
 function searchMovie () {
 	$('.movie-search-form').on('click', '.search-button', function(event) {
 		event.preventDefault();
 		selectedGenre= $('.search-query').val();
 		getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
-		/*getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);*/
+		/*getDataFromMovieDBAPI(queryGenreID, getMovieData);*/
 		/*getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);*/
 		/*getReviewsFromMovieDBAPI(currentMovieTitle, displayUserReviews);*/
 		/*checkNotInterestedMovies();*/
@@ -44,7 +53,7 @@ function changeGenreIntoGenreID (data) {
 	/*let movieGenre= data.genres.filter( obj => obj.name.toLowerCase() === selectedGenre.toLowerCase());*/
 	let movieGenre= data.genres.find(obj => obj.name.toLowerCase() === selectedGenre.toLowerCase());
 	queryGenreID = movieGenre.id;
-	getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
+	getDataFromMovieDBAPI(queryGenreID, getMovieData);
 	console.log(queryGenreID);
 	/*console.log(queryGenreID);*/
 	//needs to access genre /movie list and pull
@@ -74,8 +83,19 @@ function getDataFromMovieDBAPI(query, callback) {
 	// this will get the value from searchMovie() to 
 	//be used as a search term (query) in the MovieDBAPI results
 	//shows movie information
-	//calls displayMovieInformation()
+	//calls getMovieData()
 	//calls showMovieTrailer()
+}
+
+function getSpecificMovieFromMovieDBAPI (movieID, callback) {
+	let dataRequest = {
+		api_key: 'a916990541912af1edec4ebbf21fc10f',
+		movie_id: movieID
+		//need to figure out which page should be selected
+		//might need to further narrow search results via year
+	}
+
+	$.getJSON(movieDB_movie_search_URL(), dataRequest, callback)
 }
 
 function getReviewsFromMovieDBAPI(moviesID, callback) {
@@ -144,26 +164,21 @@ function getDataFromYoutubeAPI(movieName, callback) {
 	// calls showMovieTrailer()
 }
 
-function displayMovieInformation (data) {
-	let currentMovieData = data.results[movieIndex];
+function getMovieData (data) {
+	let movieListLength= data.results.length;
+	movieIndex= Math.floor(Math.random() *movieListLength) +1;
+	//randomly generate the movie Index
+	currentMovieData = data.results[movieIndex];
 	currentMovieTitle = currentMovieData.title 
-	movieID = currentMovieData.id;
-	console.log(movieID);
-	movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/" + movieID + "/reviews";
-	console.log(movieDB_reviews_URL);
-	console.log(currentMovieTitle);
-	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
-	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
-	/*getReviewsFromMovieDBAPI(movieID, displayUserReviews);*/
-	//this line will randomize most likely with the title
-	//added to list of already suggesting movies
-	// ---ADD FEATURE OF NO / YES/ MAYBE LIST ---
+	checkNotInterestedMovies(currentMovieData);
+	//makes sure it is not recommending a movie already seen
 
-	$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
+
+	/*$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
 		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
 		<p class= "movie-score-text"> Rating: <span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p>`);
-	$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
+	$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);*/
 	//takes the array from getDataFromMovieDBAPI(query)
 	//randomizes which movie object information to 
 	//to display all of the relevent information 
@@ -190,6 +205,15 @@ function hideSearchResults() {
 	//hides all movie sections if nothing has 
 	//been search yet
 }
+
+function hideWatchList() {
+	$('.watch-list').hide();
+}
+
+function revealWatchlist() {
+	$('.watch-list').show();
+}
+
 function revealSearchResults() {
 	$('.movie-info').show();
 }
@@ -197,9 +221,10 @@ function revealSearchResults() {
 function handleRandomMovieButton() {
 	$('.movie-search-form').on('click', '.random-search-button', function (event) {
 		event.preventDefault();
+		movieIndex = 0;
 		let randomizedGenre = movieDBGenres[Math.floor(Math.random()*movieDBGenres.length)];
 		queryGenreID = randomizedGenre;
-		getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
+		getDataFromMovieDBAPI(queryGenreID, getMovieData);
 		/*checkNotInterestedMovies();*/
 		revealSearchResults();
 	})
@@ -208,34 +233,97 @@ function handleRandomMovieButton() {
 function handleSeenItButton() {
 	$('.movie-search-form').on('click', '.seen-it-button', function(event) {
 		event.preventDefault();
-		/*pickanothermovie();*/
-		console.log('working');
+		notInterested.push(currentMovieTitle);
+		pickanothermovie();
 });
 }
 
-/*function pickanothermovie() {
-	getDataFromMovieDBAPI(queryGenreID, displayMovieInformation);
-	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
-	checkNotInterestedMovies();
-	};*/
+function handleWatchListButton() {
+	$('.movie-search-form').on('click', '.watch-list-button', function (event) {
+		event.preventDefault();
+		console.log('WORKS');
+		if(userWatchList.find(movie => movie === currentMovieTitle)) {
+			console.log('movie already in database');
+		} else {
+			addMovieToWatchlist();
+		}
+		revealWatchlist();
+	});
+}
+
+function addMovieToWatchlist() {
+	userWatchList.push(currentMovieTitle);
+	let newWatchListMovie = userWatchList[userWatchList.length-1];
+	let newestItem = renderMovieToWatchlist(newWatchListMovie);
+	/*let movieList = userWatchList.map((item, index) => renderMovieToWatchlist(item));*/
+	$('.userList').append(newestItem);
+	console.log(movieID);
+}
+
+function renderMovieToWatchlist(moviename) {
+	return `<li> <a href= '' listed-movie-id= ${movieID} class= 'watchListItem'>${moviename}</a></li>`
+}
+
+function showWatchlistMovieInformation() {
+	$('.watch-list').on('click', '.watchListItem', function (event) {
+		event.preventDefault();
+		console.log($(this).text());
+		currentMovieTitle = $(this).text();
+		movieID= $(this).attr('listed-movie-id');
+		getSpecificMovieFromMovieDBAPI(movieID, displayMovieInformation);
+	/*	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);*/
+	});
+}
+
+function pickanothermovie() {
+	getDataFromMovieDBAPI(queryGenreID, getMovieData);
+	};
 	//add the movie to the notInterested array
 	// prevent form submission for '.seen-it-button'
-	//runs displaymovieInformation(), displayMovieTrailer(),
+	//runs getMovieData() again
 	//again
 
-/*function checkNotInterestedMovies() {
+function checkNotInterestedMovies(currentMovieData) {
 	if (notInterested.find(movie => movie === currentMovieTitle)) {
-			movieIndex += 1;
 			pickanothermovie();
-		} else {
-			notInterested.push(currentMovieTitle);
+		} else { 
+		$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
+		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
+		<p class= "movie-score-text"> Rating: <span class= "movie-score">
+		${currentMovieData.vote_average} </span> </p>`);
+		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
+			
+		movieID = currentMovieData.id;
+		console.log(movieID);
+		movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/" + movieID + "/reviews";
+		console.log(movieDB_reviews_URL);
+		console.log(currentMovieTitle);
+		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 		}
-	};*/
+	};
+
+function displayMovieInformation() {
+	$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
+		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
+		<p class= "movie-score-text"> Rating: <span class= "movie-score">
+		${currentMovieData.vote_average} </span> </p>`);
+		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
+	console.log(currentMovieTitle);
+	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
+	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
+}
 		//checks the notInterested array to see if a user has
 		//already seen the movie
 		//addst the movie if they have not
 
+
+
 $(searchMovie());
 $(handleRandomMovieButton());
 $(handleSeenItButton());
+$(handleWatchListButton());
+$(showWatchlistMovieInformation());
 hideSearchResults();
+hideWatchList();
