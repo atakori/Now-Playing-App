@@ -3,5 +3,11 @@ body {
 }
 
 .highlightGenreButton {
-	
+
+}
+
+.user-review {
+	border: 2px purple solid;
+	width: 300px;
+	height:100px;
 }

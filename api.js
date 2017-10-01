@@ -138,7 +138,8 @@ function displayNYTimesReviews(reviewData) {
 function displayUserReviews(movieDBReviewData) {
 	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderUserReviews(item));
 	console.log(movieDBReviewData);
-	$('.critics-section').html(movieDBReviews);
+	$('.watcher-opinions').html(movieDBReviews);
+	$('.watcher-opinions:empty').parent().hide();
 	//this is used to display the user reviews from MovieDB
 	// and/or filmcrave.com
 }
@@ -158,7 +159,7 @@ function renderCriticReview(criticReview) {
 }
 
 function renderUserReviews(userReview) {
-	return `<li class= user-review> ${userReview.content} 
+	return ` <li class= user-review> ${userReview.content} 
 	<div> Review by: ${userReview.author}</div></li>`
 }
 
@@ -331,6 +332,7 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 		movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/" + movieID + "/reviews";
 		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
+		getReviewsFromMovieDBAPI(movieID, displayUserReviews);
 		hideGenreButtons();
 
 		}
@@ -345,6 +347,7 @@ function displayMovieInformation(currentMovieData) {
 	console.log(currentMovieTitle);
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
+	getReviewsFromMovieDBAPI(movieID, displayUserReviews);
 	hideGenreButtons();
 }
 		//this is only for pulliung up watchlist movies
