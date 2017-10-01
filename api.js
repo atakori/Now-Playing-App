@@ -208,6 +208,14 @@ function hideSearchResults() {
 	//been search yet
 }
 
+function hideGenreButtons() {
+	$('.genre-button-section').hide();
+}
+
+function revealGenreButtons() {
+	$('.genre-button-section').show();
+}
+
 function hideWatchList() {
 	$('.watch-list').hide();
 }
@@ -232,10 +240,10 @@ function handleRandomMovieButton() {
 	})
 }
 
-function handleSeenItButton() {
-	$('.movie-search-form').on('click', '.seen-it-button', function(event) {
+function handleNextSuggestionButton() {
+	$('.movie-search-form').on('click', '.next-movie-button', function(event) {
 		event.preventDefault();
-		notInterested.push(currentMovieTitle);
+		/*notInterested.push(currentMovieTitle);*/
 		pickanothermovie();
 });
 }
@@ -251,6 +259,14 @@ function handleWatchListButton() {
 		}
 		revealWatchlist();
 	});
+}
+
+function handlePickAnotherGenreButton() {
+	$('.movie-search-form').on('click', 'pick-another-genre-button', function (event) {
+		event.preventDefault();
+		hideSearchResults();
+		revealGenreButtons();
+	})
 }
 
 function addMovieToWatchlist() {
@@ -282,7 +298,7 @@ function pickanothermovie() {
 	getDataFromMovieDBAPI(queryGenreID, getMovieData);
 	};
 	//add the movie to the notInterested array
-	// prevent form submission for '.seen-it-button'
+	// prevent form submission for '.next-movie-button'
 	//runs getMovieData() again
 	//again
 
@@ -295,12 +311,16 @@ function checkNotInterestedMovies(currentMovieData) {
 		<p class= "movie-score-text"> Rating: <span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p>`);
 		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
-			
+		
+		notInterested.push(currentMovieTitle);
+		//this line adds the movie to the list of already shown movies
 		movieID = currentMovieData.id;
 		console.log(movieID);
 		movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/" + movieID + "/reviews";
 		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
+		hideGenreButtons();
+
 		}
 	};
 
@@ -311,19 +331,19 @@ function displayMovieInformation(currentMovieData) {
 		${currentMovieData.vote_average} </span> </p>`);
 		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
 	console.log(currentMovieTitle);
-
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
+	hideGenreButtons();
 }
-		//checks the notInterested array to see if a user has
-		//already seen the movie
-		//addst the movie if they have not
+		//this is only for pulliung up watchlist movies
+		//ignores notInterested array
 
 $(selectGenreFromButton());
 $(searchMovie());
 $(handleRandomMovieButton());
-$(handleSeenItButton());
+$(handleNextSuggestionButton());
 $(handleWatchListButton());
 $(showWatchlistMovieInformation());
+$(handlePickAnotherGenreButton());
 hideSearchResults();
 hideWatchList();
