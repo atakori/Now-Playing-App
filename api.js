@@ -1,4 +1,4 @@
-let notInterested = [];
+let AlreadySuggested = [];
 let userWatchList = [];
 
 const movieDB_search_URL = "https://api.themoviedb.org/3/discover/movie";
@@ -124,9 +124,13 @@ function getDataFromNYTimesAPI (movieTitle, callback) {
 function displayNYTimesReviews(reviewData) {
 	let reviewInfo = reviewData.results[0];
 	console.log(reviewInfo);
+	if (reviewInfo === undefined) {
+		$('.critics-section').hide();
+	} else {
 	let NYTimesReview= renderCriticReview(reviewInfo);
 	console.log(NYTimesReview);
 	$('.critics-section').html(NYTimesReview);
+	}
 	//this is used to display the user reviews from MovieDB
 	// and/or filmcrave.com
 }
@@ -140,9 +144,17 @@ function displayUserReviews(movieDBReviewData) {
 }
 
 function renderCriticReview(criticReview) {
-	return `<li class= NY-times-review> ${criticReview.summary_short} 
+	if (criticReview.summary_short === "" || criticReview.summary_short === null) {
+		return `<h2 class= critics> What do the Critics Say? </h2>
+	<div><a> ${criticReview.link.url}> Click here to Read a 
+	Full Review for ${criticReview.display_title} </a></div>
+	<div> Review by: ${criticReview.byline}</div></li>`
+	} else {
+	return `<h2 class= critics> What do the Critics Say? </h2>
+	<li class= NY-times-review> ${criticReview.summary_short} 
 	<div> <a href= ${criticReview.link.url}> Read Full Review </a></div>
 	<div> Review by: ${criticReview.byline}</div></li>`
+}
 }
 
 function renderUserReviews(userReview) {
@@ -172,7 +184,7 @@ function getMovieData (data) {
 	//randomly generate the movie Index
 	currentMovieData = data.results[movieIndex];
 	currentMovieTitle = currentMovieData.title 
-	checkNotInterestedMovies(currentMovieData);
+	checkAlreadySuggestedMovies(currentMovieData);
 	//makes sure it is not recommending a movie already seen
 
 
@@ -235,7 +247,7 @@ function handleRandomMovieButton() {
 		let randomizedGenre = movieDBGenres[Math.floor(Math.random()*movieDBGenres.length)];
 		queryGenreID = randomizedGenre;
 		getDataFromMovieDBAPI(queryGenreID, getMovieData);
-		/*checkNotInterestedMovies();*/
+		/*checkAlreadySuggestedMovies();*/
 		revealSearchResults();
 	})
 }
@@ -243,7 +255,7 @@ function handleRandomMovieButton() {
 function handleNextSuggestionButton() {
 	$('.movie-search-form').on('click', '.next-movie-button', function(event) {
 		event.preventDefault();
-		/*notInterested.push(currentMovieTitle);*/
+		/*AlreadySuggested.push(currentMovieTitle);*/
 		pickanothermovie();
 });
 }
@@ -297,13 +309,13 @@ function showWatchlistMovieInformation() {
 function pickanothermovie() {
 	getDataFromMovieDBAPI(queryGenreID, getMovieData);
 	};
-	//add the movie to the notInterested array
+	//add the movie to the AlreadySuggested array
 	// prevent form submission for '.next-movie-button'
 	//runs getMovieData() again
 	//again
 
-function checkNotInterestedMovies(currentMovieData) {
-	if (notInterested.find(movie => movie === currentMovieTitle)) {
+function checkAlreadySuggestedMovies(currentMovieData) {
+	if (AlreadySuggested.find(movie => movie === currentMovieTitle)) {
 			pickanothermovie();
 		} else { 
 		$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
@@ -312,7 +324,7 @@ function checkNotInterestedMovies(currentMovieData) {
 		${currentMovieData.vote_average} </span> </p>`);
 		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
 		
-		notInterested.push(currentMovieTitle);
+		AlreadySuggested.push(currentMovieTitle);
 		//this line adds the movie to the list of already shown movies
 		movieID = currentMovieData.id;
 		console.log(movieID);
@@ -336,7 +348,7 @@ function displayMovieInformation(currentMovieData) {
 	hideGenreButtons();
 }
 		//this is only for pulliung up watchlist movies
-		//ignores notInterested array
+		//ignores AlreadySuggested array
 
 $(selectGenreFromButton());
 $(searchMovie());
