@@ -8,6 +8,19 @@ body {
 
 .user-review {
 	border: 2px purple solid;
-	width: 300px;
-	height:100px;
+}
+
+.morecontent span {
+	display: none;
+}
+
+a {
+	color: #0254EB
+}
+a:visited {
+	color: #0254EB
+}
+a.morelink {
+	text-decoration:none;
+	outline: none;
 }

@@ -139,8 +139,13 @@ function displayUserReviews(movieDBReviewData) {
 	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderUserReviews(item));
 	console.log(movieDBReviewData);
 	$('.watcher-opinions').html(movieDBReviews);
+	showLimitedWordsForReview();
+	$('.watcher-opinions').parent().show();
 	$('.watcher-opinions:empty').parent().hide();
-	//this is used to display the user reviews from MovieDB
+	//checks if there was no review info pulled from movieDB
+	// and does not display parent container if nothing was pulled
+	
+	//This is used to display the user reviews from MovieDB
 	// and/or filmcrave.com
 }
 
@@ -159,8 +164,43 @@ function renderCriticReview(criticReview) {
 }
 
 function renderUserReviews(userReview) {
-	return ` <li class= user-review> ${userReview.content} 
-	<div> Review by: ${userReview.author}</div></li>`
+	return `<li class= "user-review more"> ${userReview.content} 
+	  | Review by: ${userReview.author} </li>`
+}
+
+function showLimitedWordsForReview() {
+	var showChar = 150;
+	var ellipsestext = "...";
+	var moretext = "Read full Review";
+	var lesstext = "show less";
+
+	$('.user-review').each(function() {
+		var content = $(this).html();
+
+		if(content.length > showChar) {
+
+			var c = content.substr(0, showChar);
+			var h = content.substr(showChar-1, content.length - showChar);
+
+			var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+			$(this).html(html);
+		}
+
+	});
+
+	$(".morelink").click(function(){
+		if($(this).hasClass("less")) {
+			$(this).removeClass("less");
+			$(this).html(moretext);
+		} else {
+			$(this).addClass("less");
+			$(this).html(lesstext);
+		}
+		$(this).parent().prev().toggle();
+		$(this).prev().toggle();
+		return false;
+	});
 }
 
 function getDataFromYoutubeAPI(movieName, callback) {
@@ -360,5 +400,6 @@ $(handleNextSuggestionButton());
 $(handleWatchListButton());
 $(showWatchlistMovieInformation());
 $(handlePickAnotherGenreButton());
+$(showLimitedWordsForReview());
 hideSearchResults();
 hideWatchList();
