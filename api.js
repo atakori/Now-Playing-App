@@ -1,12 +1,8 @@
 let notInterested = [];
 let userWatchList = [];
-let movieID;
 
 const movieDB_search_URL = "https://api.themoviedb.org/3/discover/movie";
-function movieDB_movie_search_URL () {
-	return `https://api.themoviedb.org/3/movie/${movieID}`;
-}
-
+let movieDB_movie_search_URL =`https://api.themoviedb.org/3/movie/`;
 const movieDB_genre_URL =  "https://api.themoviedb.org/3/genre/movie/list";
 const movieDB_poster_URL = "https://image.tmdb.org/t/p/w500";
 let movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/movieID/reviews";
@@ -20,6 +16,7 @@ let selectedGenre;
 let queryGenreID;
 let currentMovieTitle;
 let currentMovieData;
+let movieID;
 let movieIndex= 0;
 let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
 					 10749,878,10770,53,10752,37];
@@ -27,17 +24,23 @@ let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
 					 //in case any are added in the future
 					 // -- not likely but just in case
 
-movieDB_movie_search_URL();
+function selectGenreFromButton () {
+	$('.movie-search-form').on('click', '.genre-button', function (event) {
+		event.preventDefault();
+		selectedGenre = $(this).text();
+		/*$(this).addClass('highlightGenreButton');*/
+		console.log(selectedGenre);
+	});
+}
+
 
 function searchMovie () {
 	$('.movie-search-form').on('click', '.search-button', function(event) {
 		event.preventDefault();
-		selectedGenre= $('.search-query').val();
+		/*console.log(selectedGenre);*/
+		/*selectedGenre= $('.search-query').val();*/
+		console.log(selectedGenre);
 		getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
-		/*getDataFromMovieDBAPI(queryGenreID, getMovieData);*/
-		/*getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);*/
-		/*getReviewsFromMovieDBAPI(currentMovieTitle, displayUserReviews);*/
-		/*checkNotInterestedMovies();*/
 		revealSearchResults();
 	})
 	//this is to be used with for the '.search-button'
@@ -45,8 +48,6 @@ function searchMovie () {
 	//will get the user inputted genre
 
 	//Movie DB sorts genres by assigning genre-id's 
-	//I am going to have to make a function to make
-	//the query change to the cooresponding genre id
 }
 
 function changeGenreIntoGenreID (data) {
@@ -89,13 +90,14 @@ function getDataFromMovieDBAPI(query, callback) {
 
 function getSpecificMovieFromMovieDBAPI (movieID, callback) {
 	let dataRequest = {
-		api_key: 'a916990541912af1edec4ebbf21fc10f',
-		movie_id: movieID
+		api_key: 'a916990541912af1edec4ebbf21fc10f'
+		/*movie_id: movieID*/
 		//need to figure out which page should be selected
 		//might need to further narrow search results via year
 	}
-
-	$.getJSON(movieDB_movie_search_URL(), dataRequest, callback)
+	movieDB_movie_search_URL = "https://api.themoviedb.org/3/movie/" + movieID;
+	console.log(movieDB_movie_search_URL);
+	$.getJSON(movieDB_movie_search_URL, dataRequest, callback)
 }
 
 function getReviewsFromMovieDBAPI(moviesID, callback) {
@@ -297,20 +299,19 @@ function checkNotInterestedMovies(currentMovieData) {
 		movieID = currentMovieData.id;
 		console.log(movieID);
 		movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/" + movieID + "/reviews";
-		console.log(movieDB_reviews_URL);
-		console.log(currentMovieTitle);
 		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 		}
 	};
 
-function displayMovieInformation() {
+function displayMovieInformation(currentMovieData) {
 	$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
 		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
 		<p class= "movie-score-text"> Rating: <span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p>`);
 		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
 	console.log(currentMovieTitle);
+
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 }
@@ -318,8 +319,7 @@ function displayMovieInformation() {
 		//already seen the movie
 		//addst the movie if they have not
 
-
-
+$(selectGenreFromButton());
 $(searchMovie());
 $(handleRandomMovieButton());
 $(handleSeenItButton());
