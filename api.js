@@ -30,6 +30,8 @@ function selectGenreFromButton () {
 		selectedGenre = $(this).text();
 		/*$(this).addClass('highlightGenreButton');*/
 		console.log(selectedGenre);
+        getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
+        revealSearchResults();
 	});
 }
 
