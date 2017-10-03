@@ -315,7 +315,7 @@ function handleWatchListButton() {
 }
 
 function handlePickAnotherGenreButton() {
-	$('.movie-search-form').on('click', 'pick-another-genre-button', function (event) {
+	$('.movie-search-form').on('click', '.pick-another-genre-button', function (event) {
 		event.preventDefault();
 		hideSearchResults();
 		revealGenreButtons();
