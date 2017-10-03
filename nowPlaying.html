@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+	<title> Now Playing</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<main role= "main">
+		<header role= "banner"> 
+			<h1>Now Playing</h1>
+		</header>
+		<form class= 'movie-search-form'>
+
+			<!-- Buttons to Replace Genre text input -->
+			<section class = 'genre-button-section'>
+				<h2> What Do you Want to watch? </h2>
+				<button class= "genre-button">Action</button>
+				<button class= "genre-button">Adventure</button>
+				<button class= "genre-button">Animation</button>
+				<button class= "genre-button">Comedy</button>
+				<button class= "genre-button">Crime</button>
+				<button class= "genre-button">Documentary</button>
+				<button class= "genre-button">Drama</button>
+				<button class= "genre-button">Family</button>
+				<button class= "genre-button">Fantasy</button>
+				<button class= "genre-button">History</button>
+				<button class= "genre-button">Horror</button>
+				<button class= "genre-button">Music</button>
+				<button class= "genre-button">Mystery</button>
+				<button class= "genre-button">Romance</button>
+				<button class= "genre-button">Science Fiction</button>
+				<button class= "genre-button">TV Movie</button>
+				<button class= "genre-button">Thriller</button>
+			
+			<div class = "submit-buttons">
+				<button class= 'search-button'> Search </button>
+				<button class= 'random-search-button'> Random movie </button>
+			</div>
+
+			</section>
+
+			<section class= "watch-list">
+			<h3 class = "watchlist-header">My Watchlist</h3> 
+			<div class = "userList"> 
+			</div>
+			</section>
+
+			<section class= 'movie-info'>
+				<div class= "movie-header"> 
+					<h2> Movie title and poster goes here</h2>
+				</div>
+
+				<div class= "movie-DVD-theater-release-info"> 
+					<h3> DVD/Theater Release checkboxes go here</h3>
+					<p> Insert checkbox image here | In Theatres </p>
+					<p> Insert checkbox image here | Out on DVD </p>
+				</div>
+
+				<div class= 'movieDB-synopsis'>
+					<p> Info from movieDB goes here </p>
+				</div>
+
+				<div class= 'youtube-movie-trailer'>
+					<p> Insert youtube trailer here </p>
+				</div>
+
+				<div class= 'critics-section'>
+					<h2> What others are saying!</h2>
+					<p> Include the top 4 critics reviews if possible </p>
+				</div>
+				<div class= 'user-reviews-section'>
+					<div class = 'user-reviews-header'> 
+						<h2>Movie Watcher Opinions</h2>
+					</div>
+					<div class = 'watcher-opinions'> 
+						<p> Enter User Reviews Here </p>
+					</div>
+				</div>
+
+				<button class='next-movie-button'> Next Movie</button>
+				<button class='watch-list-button'> Add to my Watchlist</button>
+				<button class='pick-another-genre-button'> Pick another genre</button>
+				<button class='random-search-button'> Random Genre!</button>
+			</section>
+			
+
+		</form>
+
+
+	</main>
+
+
+	<script type = "text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src= "api.js"></script>
+</body>
+</html>
