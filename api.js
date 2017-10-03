@@ -28,7 +28,10 @@ function selectGenreFromButton () {
 	$('.movie-search-form').on('click', '.genre-button', function (event) {
 		event.preventDefault();
 		selectedGenre = $(this).text();
-		/*$(this).addClass('highlightGenreButton');*/
+		$('button.highlightGenreButton').removeClass('highlightGenreButton');
+		$(this).addClass('highlightGenreButton');
+		//will want to get a css animation for more effectively showing
+		//the currently selected genre
 		console.log(selectedGenre);
 	});
 }

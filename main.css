@@ -3,7 +3,7 @@ body {
 }
 
 .highlightGenreButton {
-
+	border: 2px yellow solid;
 }
 
 .user-review {
