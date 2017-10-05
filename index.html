@@ -19,57 +19,57 @@
 			<h1>Now Playing</h1>
 		</header>
 		<form class= 'movie-search-form'>
+			<section class = "genre-selection-section"> 
+				<section class = "view-genre-section"> 
+					<!-- <h2> What Do you Want to watch? </h2> -->
+					<div class= "projector-display">
+						<h2 class = "projector-text"> What Do you Want to watch? </h2>
+						<video width= 100% height= 100% autoplay loop>
+							<source src="countdown.mp4" type="video/mp4">
+						</video>
+					</div>
+				</section>
 
-			<section class = "View-genre-section"> 
-				<!-- <h2> What Do you Want to watch? </h2> -->
-				<div class= "projector-display">
-					<h2 class = "projector-text"> What Do you Want to watch? </h2>
-					<video width= 100% height= 100% autoplay loop>
-						<source src="countdown.mp4" type="video/mp4">
-					</video>
+				<!-- Buttons to Replace Genre text input -->
+				<section class = 'genre-button-section clear'>
+					<h2> Select a genre! </h2>
+					<div class= "container-fluid">
+						<div class ="row">
+							<div class= "col-md-3"> <button class= "genre-button btn btn-danger">Action</button> </div>
+							<div class= "col-md
+							-3"><button class= "genre-button btn btn-indigo">Adventure</button></div>
+							<div class= "col-md
+							-3"><button class= "genre-button btn btn-default">Animation</button></div>
+							<div class= "col-md
+							-3"><button class= "genre-button btn btn-amber">Comedy</button></div>
+						</div>
+						<div class = "row">
+							<div class= "col-md-3"><button class= "genre-button btn btn-deep-purple">Crime</button> </div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-success">Documentary</button> </div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-secondary">Drama</button> </div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-cyan">Family</button> </div>
+						</div>
+						<div class = "row">
+							<div class= "col-md-3"><button class= "genre-button btn btn-info">Fantasy</button> </div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-mdb-color">History</button> </div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-elegant">Horror</button> </div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-light-blue">Music</button> </div>
+						</div>
+						<div class= "row">
+							<div class= "col-md-3"><button class= "genre-button btn btn-purple">Mystery</button></div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-pink">Romance</button></div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-dark-green">Science Fiction</button></div>
+							<div class= "col-md-3"><button class= "genre-button btn btn-deep-orange">TV Movie</button></div>
+						</div>
+						<div class= "row">
+							<div class= "col-md-6"><button class= "genre-button btn btn-unique">Thriller</button></div>
+						</div>
+					</div>
+				<div class = "submit-buttons">
+					<button class= 'search-button btn btn-primary'> Search </button>
+					<button class= 'random-search-button btn btn-red'> Random movie </button>
 				</div>
-			</section>
-
-			<!-- Buttons to Replace Genre text input -->
-			<section class = 'genre-button-section clear'>
-				<h2> Select a genre! </h2>
-				<div class= "container-fluid">
-					<div class ="row">
-						<div class= "col-md-3"> <button class= "genre-button btn btn-danger">Action</button> </div>
-						<div class= "col-md
-						-3"><button class= "genre-button btn btn-indigo">Adventure</button></div>
-						<div class= "col-md
-						-3"><button class= "genre-button btn btn-default">Animation</button></div>
-						<div class= "col-md
-						-3"><button class= "genre-button btn btn-amber">Comedy</button></div>
-					</div>
-					<div class = "row">
-						<div class= "col-md-3"><button class= "genre-button btn btn-deep-purple">Crime</button> </div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-success">Documentary</button> </div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-secondary">Drama</button> </div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-cyan">Family</button> </div>
-					</div>
-					<div class = "row">
-						<div class= "col-md-3"><button class= "genre-button btn btn-info">Fantasy</button> </div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-mdb-color">History</button> </div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-elegant">Horror</button> </div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-light-blue">Music</button> </div>
-					</div>
-					<div class= "row">
-						<div class= "col-md-3"><button class= "genre-button btn btn-purple">Mystery</button></div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-pink">Romance</button></div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-dark-green">Science Fiction</button></div>
-						<div class= "col-md-3"><button class= "genre-button btn btn-deep-orange">TV Movie</button></div>
-					</div>
-					<div class= "row">
-						<div class= "col-md-6"><button class= "genre-button btn btn-unique">Thriller</button></div>
-					</div>
-				</div>
-			<div class = "submit-buttons">
-				<button class= 'search-button btn btn-primary'> Search </button>
-				<button class= 'random-search-button btn btn-red'> Random movie </button>
-			</div>
-
+				</section>
 			</section>
 
 			<section class= "watch-list">
@@ -83,7 +83,7 @@
 					<h2> Movie title and poster goes here</h2>
 				</div>
 
-				<div class= "movie-DVD-theater-release-info"> 
+				<div class= "genre-type-info"> 
 					<h3> DVD/Theater Release checkboxes go here</h3>
 					<p> Insert checkbox image here | In Theatres </p>
 					<p> Insert checkbox image here | Out on DVD </p>

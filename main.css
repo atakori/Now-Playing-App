@@ -12,7 +12,7 @@ header h1 {
 	margin-left: 20px;
 }
 
-.View-genre-section {
+.view-genre-section {
 	width: 100%;
 }
 
@@ -212,6 +212,28 @@ header h1 {
 	border-bottom: 40px black solid;
 }
 
+/* Movie Info Section*/
+
+.movie-info {
+	height: 700px;
+}
+
+.movie-title {
+	margin-left: 20px;
+}
+
+.movie-poster {
+	display: block;
+	max-width: 50%;
+	max-height: 800px;
+	width: auto;
+	height: auto;
+	margin-left: 20px;
+}
+
+
+/**/
+
 a {
 	color: #0254EB
 }
@@ -226,3 +248,14 @@ a.morelink {
 button {
 	width: 100%;
 }
+
+@media (max-width: 843px) {
+	.projector-display {
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+
+}
+

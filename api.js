@@ -302,18 +302,23 @@ function embedYoutubeVideo(result) {
 	frameborder="0" allowfullscreen></iframe>`
 }
 
+function showSelectedGenre () {
+	return `<h3 class = 'genre-description'> This movie has the genre 
+	<span class= 'genre-name'> <p class= 'btn btn-red'> ${selectedGenre}</p> </button><span></h3>`
+}
+
 function hideSearchResults() {
 	$('.movie-info').hide();
 	//hides all movie sections if nothing has 
 	//been search yet
 }
 
-function hideGenreButtons() {
-	$('.genre-button-section').hide();
+function hideGenreSelectionSection() {
+	$('.genre-selection-section').hide();
 }
 
-function revealGenreButtons() {
-	$('.genre-button-section').show();
+function revealGenreSelectionSection() {
+	$('.genre-selection-section').show();
 }
 
 function hideWatchList() {
@@ -365,7 +370,7 @@ function handlePickAnotherGenreButton() {
 	$('.movie-search-form').on('click', '.pick-another-genre-button', function (event) {
 		event.preventDefault();
 		hideSearchResults();
-		revealGenreButtons();
+		revealGenreSelectionSection();
 	})
 }
 
@@ -411,7 +416,9 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 		<p class= "movie-score-text"> Rating: <span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p>`);
 		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
-		
+
+		$('.genre-type-info').html(showSelectedGenre);
+
 		AlreadySuggested.push(currentMovieTitle);
 		//this line adds the movie to the list of already shown movies
 		movieID = currentMovieData.id;
@@ -420,7 +427,7 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 		getReviewsFromMovieDBAPI(movieID, displayUserReviews);
-		hideGenreButtons();
+		hideGenreSelectionSection();
 
 		}
 	};
@@ -430,12 +437,13 @@ function displayMovieInformation(currentMovieData) {
 		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
 		<p class= "movie-score-text"> Rating: <span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p>`);
-		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
+	$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
+	$('.genre-type-info').html(showSelectedGenre);
 	console.log(currentMovieTitle);
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 	getReviewsFromMovieDBAPI(movieID, displayUserReviews);
-	hideGenreButtons();
+	hideGenreSelectionSection();
 }
 		//this is only for pulliung up watchlist movies
 		//ignores AlreadySuggested array
