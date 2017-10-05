@@ -1,5 +1,33 @@
 body {
-	background-color: gray;
+	 background: url('https://ak0.picdn.net/shutterstock/videos/5410520/thumb/3.jpg?i10c=img.resize(height:72)') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+header h1 {
+	font-size: 50px;
+	margin-left: 20px;
+}
+
+.View-genre-section {
+	width: 100%;
+}
+
+.projector-display {
+	float: right;
+	width: 50%;
+	margin-right: 20px;
+}
+
+.projector-text {
+	text-align: center;
+}
+
+.clear {
+	clear:both;
 }
 
 .highlightGenreButton {
@@ -12,6 +40,176 @@ body {
 
 .morecontent span {
 	display: none;
+}
+
+.genre-button-section {
+	/*background-color: rgba(256, 0, 0,0.1);*/
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.action-background {
+	 background: url('https://cdn1.theyoungfolks.com/wp-content/uploads/2017/05/03231419/avengers-2.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.adventure-background {
+	 background: url('https://s-media-cache-ak0.pinimg.com/originals/57/98/06/579806ee0123a59c35f8b006c15578d5.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.animation-background {
+	 background: url('https://i.ytimg.com/vi/J6eUjbKA4yw/maxresdefault.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.comedy-background {
+	 background: url('https://s-media-cache-ak0.pinimg.com/originals/68/15/2c/68152c9904f74bcefd93150786ecafc6.png') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.crime-background {
+	 background: url('[https://movie-screencaps.com/wp-content/uploads/2017/04/godfather-movie-screencaps.com-.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.documentary-background {
+	 background: url('https://i.imgur.com/1nIty7I.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.drama-background {
+	 background: url('http://screenmusings.org/ForrestGump/images/Forrest-Gump-0100.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.family-background {
+	 background: url('https://typeset-beta.imgix.net/rehost%2F2016%2F9%2F13%2F323d35a7-ec0c-47cd-a4d8-ba28c15ffce9.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.fantasy-background {
+	 background: url('https://geekdad.com/wp-content/uploads/2016/11/DoctorStrange-magic.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.history-background {
+	 background: url('https://i3.wp.com/designbypixl.com/wp-content/uploads/2016/05/The-Best-Disney-Movies-of-All-Time-1-2.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.horror {
+	 background: url('http://cinemavine.com/wp-content/uploads/2017/07/it-movie-trailer-screencaps-10.png') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.music-background {
+	 background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuO1FR7bFCi-bVtgeEhvPw11d5eJsDDwiRalzmQaOPrR-Koc7U') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.mystery-background {
+	 background: url('http://cdn.collider.com/wp-content/uploads/sherlock-holmes-movie-image-21.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.romance-background {
+	 background: url('https://vignette2.wikia.nocookie.net/titanic/images/3/3a/Titanic-movie-screencaps.com-22321.jpg/revision/latest?cb=20160822190406') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.science-fiction-background {
+	 background: url('http://overmental.com/wp-content/uploads/2015/07/star-wars5-movie-screencaps.com-7202.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+.TV-movie-background {
+	 background: url('https://assets1.ignimgs.com/thumbs/userUploaded/2016/10/11/blackmirror11280-1476180444633_1280w.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
+}
+
+.thriller-background {
+	 background: url('https://moviescene.files.wordpress.com/2014/11/skyfall-movie-screencaps-com-26.jpg') no-repeat center center fixed; 
+	 -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-top: 40px black solid;
+	border-bottom: 40px black solid;
 }
 
 a {

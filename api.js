@@ -16,6 +16,7 @@ let selectedGenre;
 let queryGenreID;
 let currentMovieTitle;
 let currentMovieData;
+let currentGenreBackground;
 let movieID;
 let movieIndex= 0;
 let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
@@ -30,10 +31,53 @@ function selectGenreFromButton () {
 		selectedGenre = $(this).text();
 		$('button.highlightGenreButton').removeClass('highlightGenreButton');
 		$(this).addClass('highlightGenreButton');
+		$('.genre-button-section').removeClass(currentGenreBackground);
 		//will want to get a css animation for more effectively showing
 		//the currently selected genre
+		renderGenreBackground();
 		console.log(selectedGenre);
-	});
+		});
+	};
+
+function renderGenreBackground () {
+	if (selectedGenre === 'Action') {
+		currentGenreBackground = 'action-background';
+		} else if (selectedGenre === 'Adventure') {
+			currentGenreBackground = 'adventure-background';
+		} else if (selectedGenre === 'Animation') {
+			currentGenreBackground = 'animation-background';
+		} else if (selectedGenre === 'Comedy') {
+			currentGenreBackground = 'adventure-background';
+		} else if (selectedGenre === 'Crime') {
+			currentGenreBackground = 'crime-background';
+		} else if (selectedGenre === 'Documentary') {
+			currentGenreBackground = 'documentary-background';
+		} else if (selectedGenre === 'Drama') {
+			currentGenreBackground = 'drama-background';
+		} else if (selectedGenre === 'Family') {
+			currentGenreBackground = 'family-background';
+		} else if (selectedGenre === 'Fantasy') {
+			currentGenreBackground = 'fantasy-background';
+		} else if (selectedGenre === 'History') {
+			currentGenreBackground = 'history-background';
+		} else if (selectedGenre === 'Horror') {
+			currentGenreBackground = 'horror-background';
+		} else if (selectedGenre === 'Music') {
+			currentGenreBackground = 'music-background';
+		} else if (selectedGenre === 'Mystery') {
+			currentGenreBackground = 'mystery-background';
+		} else if (selectedGenre === 'Romance') {
+			currentGenreBackground = 'romance-background';
+		} else if (selectedGenre === 'Science Fiction') {
+			currentGenreBackground = 'science-fiction-background';
+		} else if (selectedGenre === 'TV Movie') {
+			currentGenreBackground = 'TV-movie-background';
+		} else if (selectedGenre === 'Thriller') {
+			currentGenreBackground = 'thriller-background';
+		}
+		$('.genre-button-section').addClass(currentGenreBackground);
+		//this line will be updated to change the background to the 
+		//matching genre background
 }
 
 
