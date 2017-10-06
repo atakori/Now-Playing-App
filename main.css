@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	 background: url('https://ak0.picdn.net/shutterstock/videos/5410520/thumb/3.jpg?i10c=img.resize(height:72)') no-repeat center center fixed; 
 	 -webkit-background-size: cover;
@@ -20,10 +24,38 @@ header h1 {
 	float: right;
 	width: 50%;
 	margin-right: 20px;
+	object-fit: contain;
+}
+
+.projector-display img {
+	height: 100%;
+	width: 100%;
 }
 
 .projector-text {
 	text-align: center;
+}
+
+.flex-container {
+	margin-bottom: 20px;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+#last-row {
+	justify-content: center;
+}
+.flex-container .row button {
+	width: 23%;
+}
+
+.submit-buttons button {
+	width: 100%;
 }
 
 .clear {
@@ -222,14 +254,76 @@ header h1 {
 	margin-left: 20px;
 }
 
+.movie-header {
+	display: inline-block;
+	max-width: 49%;
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
+}
+
 .movie-poster {
-	display: block;
-	max-width: 50%;
+	display: inline-block;
+	max-width: 100%;
 	max-height: 800px;
 	width: auto;
 	height: auto;
 	margin-left: 20px;
 }
+
+.right-col {
+	float: right;
+	width: 48%;
+	text-align: center;
+/*	margin-left: 2%;
+	margin-right: 2%;*/
+}
+.movieDB-synopsis {
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.youtube-movie-trailer {
+	width: 100%;
+	height: 500px;
+	padding-left: 3%;
+    padding-right: 3%;
+}
+
+.critics-section h2 {
+	margin-top: 35px;
+	text-align: center;
+}
+
+.NY-times-review {
+	list-style: none;
+	text-align: center;
+}
+
+.NY-times-review a{
+	color: red;
+}
+
+.user-reviews-header {
+	text-align: center;
+	margin-top: 35px;
+}
+
+.user-review {
+	list-style: none;
+}
+
+
+.bottom-buttons{
+	width: 100%;
+	text-align: center;
+}
+
+.bottom-buttons button {
+	width: 23%;
+}
+
+
 
 
 /**/
@@ -245,9 +339,7 @@ a.morelink {
 	outline: none;
 }
 
-button {
-	width: 100%;
-}
+
 
 @media (max-width: 843px) {
 	.projector-display {
@@ -256,6 +348,17 @@ button {
 		margin-right: auto;
 	}
 
+	.row {
+	display: block;
+	justify-content: none;
+	margin:0 2%;
+}
+.flex-container .row button {
+	width: 100%;
+	}
 
 }
 
+@media (max-width: 843px) {
+
+}

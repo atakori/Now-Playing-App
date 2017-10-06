@@ -75,10 +75,16 @@ function renderGenreBackground () {
 		} else if (selectedGenre === 'Thriller') {
 			currentGenreBackground = 'thriller-background';
 		}
-		$('.genre-button-section').addClass(currentGenreBackground);
+		/*$('.genre-button-section').addClass(currentGenreBackground);*/
 		//this line will be updated to change the background to the 
 		//matching genre background
+
+		$('.projector-display').html(`<h2> What do you Want to Watch?</h2> 
+				<img src= "https://s-media-cache-ak0.pinimg.com/originals/57/98/06/579806ee0123a59c35f8b006c15578d5.jpg">
+				`);
 }
+
+/*<div width= "100% height= "500px" class= ${currentGenreBackground}> </div>*/
 
 
 function searchMovie () {
@@ -297,7 +303,7 @@ function showMovieTrailer(youtubeData) {
 }
 
 function embedYoutubeVideo(result) {
-	return `<iframe width="560" height="315" 
+	return `<iframe width= 100% height= 100% 
 	src="https://www.youtube.com/embed/${result.id.videoId}" 
 	frameborder="0" allowfullscreen></iframe>`
 }
@@ -413,9 +419,9 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 		} else { 
 		$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
 		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
-		<p class= "movie-score-text"> Rating: <span class= "movie-score">
-		${currentMovieData.vote_average} </span> </p>`);
-		$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
+		`);
+		$('.movieDB-synopsis').html(`<p class= "movie-score-text"> Rating: <span class= "movie-score">
+		${currentMovieData.vote_average} </span> </p> <p> ${currentMovieData.overview}</p>`);
 
 		$('.genre-type-info').html(showSelectedGenre);
 
@@ -435,9 +441,10 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 function displayMovieInformation(currentMovieData) {
 	$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
 		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
-		<p class= "movie-score-text"> Rating: <span class= "movie-score">
-		${currentMovieData.vote_average} </span> </p>`);
-	$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);
+		`);
+	$('.movieDB-synopsis').html(`<p class= "movie-score-text"> Rating: <span class= "movie-score">
+		${currentMovieData.vote_average} </span> </p>
+		<p> ${currentMovieData.overview}</p>`);
 	$('.genre-type-info').html(showSelectedGenre);
 	console.log(currentMovieTitle);
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
