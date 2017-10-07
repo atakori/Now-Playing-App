@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="MDB Free/css/mdb.css">
 	<link rel="stylesheet" type="text/css" href="MDB Free/css/style.css">
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link href="https://fonts.googleapis.com/css?family=Cinzel:700|Martel:300|Raleway:800|Righteous" rel="stylesheet">
 	<script src="https://use.fontawesome.com/cc3bb50ab5.js" rel= "stylesheet"> </script>
 
 
@@ -16,7 +17,7 @@
 <body>
 	<main role= "main">
 		<header role= "banner"> 
-			<h1>Now Playing</h1>
+			<h1> <i class="fa fa-film" aria-hidden="true"></i> Now Playing</h1>
 		</header>
 		<form class= 'movie-search-form'>
 			<section class = "genre-selection-section"> 
@@ -32,36 +33,39 @@
 
 				<!-- Buttons to Replace Genre text input -->
 				<section class = 'genre-button-section clear'>
-					<h2> Select a genre! </h2>
-					<div class= "flex-container">
-						<div class ="row">
-							<button class= "genre-button btn btn-danger">Action</button>
-							<button class= "genre-button btn btn-indigo">Adventure</button>
-							<button class= "genre-button btn btn-default">Animation</button>
-							<button class= "genre-button btn btn-amber">Comedy</button>
+					<section class = " buttons-section fullScreenWidthBorder 
+					semiTransparentgreyBackground">
+						<h2 class = 'genre-section-title'> Select a genre! </h2>
+						<div class= "flex-container">
+							<div class ="row">
+								<button class= "genre-button btn btn-danger">Action</button>
+								<button class= "genre-button btn btn-indigo">Adventure</button>
+								<button class= "genre-button btn btn-default">Animation</button>
+								<button class= "genre-button btn btn-amber">Comedy</button>
+							</div>
+							<div class = "row">
+								<button class= "genre-button btn btn-deep-purple">Crime</button> 
+								<button class= "genre-button btn btn-success">Documentary</button> 
+								<button class= "genre-button btn btn-secondary">Drama</button> 
+								<button class= "genre-button btn btn-cyan">Family</button>
+							</div>
+							<div class = "row">
+								<button class= "genre-button btn btn-info">Fantasy</button> 
+								<button class= "genre-button btn btn-mdb-color">History</button> 
+								<button class= "genre-button btn btn-elegant">Horror</button> 
+								<button class= "genre-button btn btn-light-blue">Music</button> 
+							</div>
+							<div class= "row">
+								<button class= "genre-button btn btn-purple">Mystery</button>
+								<button class= "genre-button btn btn-pink">Romance</button>
+								<button class= "genre-button btn btn-dark-green">Science Fiction</button>
+								<button class= "genre-button btn btn-deep-orange">TV Movie</button>
+							</div>
+							<div class= "row" id= "last-row">
+								<button class= "genre-button btn btn-unique">Thriller</button>
+							</div>
 						</div>
-						<div class = "row">
-							<button class= "genre-button btn btn-deep-purple">Crime</button> 
-							<button class= "genre-button btn btn-success">Documentary</button> 
-							<button class= "genre-button btn btn-secondary">Drama</button> 
-							<button class= "genre-button btn btn-cyan">Family</button>
-						</div>
-						<div class = "row">
-							<button class= "genre-button btn btn-info">Fantasy</button> 
-							<button class= "genre-button btn btn-mdb-color">History</button> 
-							<button class= "genre-button btn btn-elegant">Horror</button> 
-							<button class= "genre-button btn btn-light-blue">Music</button> 
-						</div>
-						<div class= "row">
-							<button class= "genre-button btn btn-purple">Mystery</button>
-							<button class= "genre-button btn btn-pink">Romance</button>
-							<button class= "genre-button btn btn-dark-green">Science Fiction</button>
-							<button class= "genre-button btn btn-deep-orange">TV Movie</button>
-						</div>
-						<div class= "row" id= "last-row">
-							<button class= "genre-button btn btn-unique">Thriller</button>
-						</div>
-					</div>
+				</section>
 				<div class = "submit-buttons">
 					<button class= 'search-button btn btn-primary'> Search </button>
 					<button class= 'random-search-button btn btn-red'> Random movie </button>

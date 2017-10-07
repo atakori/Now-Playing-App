@@ -3,8 +3,8 @@
 }
 
 body {
-	 background: url('https://ak0.picdn.net/shutterstock/videos/5410520/thumb/3.jpg?i10c=img.resize(height:72)') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
+  background: url('https://ak0.picdn.net/shutterstock/videos/5410520/thumb/3.jpg?i10c=img.resize(height:72)') no-repeat center center fixed; 
+  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -16,6 +16,10 @@ header h1 {
 	margin-left: 20px;
 }
 
+p {
+	font-family: 'Martel', serif;
+}
+
 .view-genre-section {
 	width: 100%;
 }
@@ -25,15 +29,42 @@ header h1 {
 	width: 50%;
 	margin-right: 20px;
 	object-fit: contain;
+	text-align: center;
 }
 
+.projector-display h2 {
+	font-family: 'Righteous', cursive;
+}
 .projector-display img {
 	height: 100%;
 	width: 100%;
+	border: 1px solid white;
 }
 
 .projector-text {
 	text-align: center;
+	/*font-family: 'Patua One', cursive;*/
+
+	font-family: 'Righteous', cursive;
+/*font-family: 'Noticia Text', serif;*/
+/*font-family: 'Orbitron', sans-serif;*/
+/*font-family: 'Playfair Display SC', serif;*/
+/*font-family: 'Righteous', cursive;*/
+}
+
+header h1 {
+	font-family: 'Righteous', cursive;
+}
+
+.genre-section-title {
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	margin-top: 15px
+
+
+}
+.buttons-section {
+	margin-bottom: 20px;
 }
 
 .flex-container {
@@ -90,7 +121,33 @@ header h1 {
 }
 
 .genre-description {
+	font-family: 'Cinzel', serif;
 	margin-top: 20px;
+	font-size: 30px;
+}
+
+fa-star {
+	display:inline;
+}
+
+.movie-score-text {
+	font-family: 'Cinzel', serif;
+	font-size: 28px;
+	margin-bottom: 2px;
+/*font-family: 'Noticia Text', serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Patua One', cursive;
+font-family: 'Playfair Display SC', serif;
+font-family: 'Righteous', cursive;*/
+}
+.underline {
+	 text-decoration: underline;
+}
+
+.movie-score {
+	display:block;
+	text-decoration: none;
+    font-size: 50px;
 }
 
 .genre-name {
@@ -103,162 +160,15 @@ header h1 {
 }
 
 .genre-button-section {
-	/*background-color: rgba(256, 0, 0,0.1);*/
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	margin-top: 20px;
 }
 
-.action-background {
-	 'https://cdn1.theyoungfolks.com/wp-content/uploads/2017/05/03231419/avengers-2.jpg'
+button {
+	font-family: 'Raleway', sans-serif;
+	font-size: 13px;
 }
 
-.adventure-background {
-	 background: url('https://s-media-cache-ak0.pinimg.com/originals/57/98/06/579806ee0123a59c35f8b006c15578d5.jpg'); 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
 
-.animation-background {
-	 'https://i.ytimg.com/vi/J6eUjbKA4yw/maxresdefault.jpg'; 
-	}
-
-.comedy-background {
-	 background: url('https://s-media-cache-ak0.pinimg.com/originals/68/15/2c/68152c9904f74bcefd93150786ecafc6.png') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-
-.crime-background {
-	 background: url('[https://movie-screencaps.com/wp-content/uploads/2017/04/godfather-movie-screencaps.com-.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.documentary-background {
-	 background: url('https://i.imgur.com/1nIty7I.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.drama-background {
-	 background: url('http://screenmusings.org/ForrestGump/images/Forrest-Gump-0100.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.family-background {
-	 background: url('https://typeset-beta.imgix.net/rehost%2F2016%2F9%2F13%2F323d35a7-ec0c-47cd-a4d8-ba28c15ffce9.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.fantasy-background {
-	 background: url('https://geekdad.com/wp-content/uploads/2016/11/DoctorStrange-magic.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-
-.history-background {
-	 background: url('https://i3.wp.com/designbypixl.com/wp-content/uploads/2016/05/The-Best-Disney-Movies-of-All-Time-1-2.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-
-.horror {
-	 background: url('http://cinemavine.com/wp-content/uploads/2017/07/it-movie-trailer-screencaps-10.png') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-
-.music-background {
-	 background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuO1FR7bFCi-bVtgeEhvPw11d5eJsDDwiRalzmQaOPrR-Koc7U') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.mystery-background {
-	 background: url('http://cdn.collider.com/wp-content/uploads/sherlock-holmes-movie-image-21.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.romance-background {
-	 background: url('https://vignette2.wikia.nocookie.net/titanic/images/3/3a/Titanic-movie-screencaps.com-22321.jpg/revision/latest?cb=20160822190406') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.science-fiction-background {
-	 background: url('http://overmental.com/wp-content/uploads/2015/07/star-wars5-movie-screencaps.com-7202.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-.TV-movie-background {
-	 background: url('https://assets1.ignimgs.com/thumbs/userUploaded/2016/10/11/blackmirror11280-1476180444633_1280w.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
-
-.thriller-background {
-	 background: url('https://moviescene.files.wordpress.com/2014/11/skyfall-movie-screencaps-com-26.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
 
 /* Movie Info Section*/
 
@@ -267,6 +177,7 @@ header h1 {
 }
 
 .movie-title {
+	font-family: 'Righteous', cursive;
 	margin-left: 20px;
 }
 
@@ -316,6 +227,16 @@ header h1 {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0B0F12', endColorstr='#2E2E2E',GradientType=1 ); /* ie6-9 */
 }
 
+.semiTransparentgreyBackground {
+	background: -moz-radial-gradient(center, ellipse cover, rgba(11,15,18,0.5) 0%, rgba(46,46,46,1000) 100%); /* ff3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(11,15,18,0.95)), color-stop(100%, rgba(46,46,46,1))); /* safari4+,chrome */
+	background:-webkit-radial-gradient(center, ellipse cover, rgba(11,15,18,0.5) 0%, rgba(46,46,46,1000) 100%); /* safari5.1+,chrome10+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(11,15,18,0.5) 0%, rgba(46,46,46,1000) 100%); /* opera 11.10+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(11,15,18,0.5) 0%, rgba(46,46,46,1000) 100%); /* ie10+ */
+	background:radial-gradient(ellipse at center, rgba(11,15,18,0.5) 0%, rgba(46,46,46,1000) 100%); /* w3c */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0B0F12', endColorstr='#2E2E2E',GradientType=1 ); /* ie6-9 */
+}
+
 .right-col {
 	float: right;
 	width: 48%;
@@ -330,7 +251,7 @@ header h1 {
 
 .youtube-movie-trailer {
 	width: 100%;
-	height: 500px;
+	height: 400px;
 	padding-left: 3%;
     padding-right: 3%;
     margin-top: 10px;
@@ -348,6 +269,7 @@ iframe {
 }
 .critics-section h2 {
 	text-align: center;
+	font-family: 'Righteous', cursive;
 }
 
 .NY-times-review {
@@ -359,11 +281,16 @@ iframe {
 	color: red;
 }
 
+li.NY-times-review {
+	font-family: 'Martel', serif;
+}
+
 .user-reviews-section {
 	margin-top: 30px;
 }
 
 .user-reviews-header {
+	font-family: 'Righteous', cursive;
 	text-align: center;
 }
 
@@ -371,6 +298,7 @@ iframe {
 .user-review {
 	border: 1px red solid;
 	list-style: none;
+	font-family: 'Martel', serif;
 }
 
 .watcher-opinions {
@@ -430,7 +358,11 @@ a.morelink {
 
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
+
+	header h1 {
+	margin-bottom: 20px;
+}
 	.movie-info {
 		width: 100%;
 		text-align: center;
@@ -444,29 +376,29 @@ a.morelink {
 	margin: 0 auto;
 }
 
-.movie-title {
-	margin-left: 0px;
-}
-
-.movie-poster {
-	display: inline-block;
-	max-width: 100%;
-	max-height: 800px;
-	width: auto;
-	height: auto;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 2%;
-	margin-bottom: 15px;
-}
-
-	.right-col {
-	float: none;
-	width: 100%;
-	text-align: center;
+	.movie-title {
+		margin-left: 0px;
 	}
 
-	.bottom-buttons button {
-	width: 100%;
-}
+	.movie-poster {
+		display: inline-block;
+		max-width: 100%;
+		max-height: 800px;
+		width: auto;
+		height: auto;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 2%;
+		margin-bottom: 15px;
+	}
+
+		.right-col {
+		float: none;
+		width: 100%;
+		text-align: center;
+		}
+
+		.bottom-buttons button {
+		width: 100%;
+	}
 }

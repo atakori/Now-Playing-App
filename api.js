@@ -454,7 +454,7 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 		$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
 		<img class= "movie-poster border" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
 		`);
-		$('.movieDB-synopsis').html(`<p class= "movie-score-text"> Rating: <span class= "movie-score">
+		$('.movieDB-synopsis').html(`<p class= "movie-score-text"> <i class="fa fa-star" aria-hidden="true"></i> <span class= 'underline'>  Rating:</span> <i class="fa fa-star" aria-hidden="true"></i><span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p> <p> ${currentMovieData.overview}</p>`);
 
 		$('.genre-type-info').html(showSelectedGenre);
