@@ -189,7 +189,7 @@ function displayNYTimesReviews(reviewData) {
 }
 
 function displayUserReviews(movieDBReviewData) {
-	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderUserReviews(item));
+	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderUserReviews(item,index));
 	console.log(movieDBReviewData);
 	$('.watcher-opinions').html(movieDBReviews);
 	showLimitedWordsForReview();
@@ -216,8 +216,18 @@ function renderCriticReview(criticReview) {
 }
 }
 
-function renderUserReviews(userReview) {
-	return `<li class= "user-review more"> ${userReview.content} 
+/*function renderUserReviews(userReview, indexNum) {
+	  if (indexNum % 2 === 0) {
+	  	return `<li class= "user-review user-review-right more"> ${userReview.content} 
+	  | Review by: ${userReview.author} </li>`
+	  } else {
+	  	return `<li class= "user-review user-review-left more"> ${userReview.content} 
+	  | Review by: ${userReview.author} </li>`
+	  }
+}*/
+
+function renderUserReviews(userReview, indexNum) {
+	  	return `<li class= "user-review more"> ${userReview.content} 
 	  | Review by: ${userReview.author} </li>`
 }
 
@@ -346,9 +356,10 @@ function handleRandomMovieButton() {
 		let randomizedGenre = movieDBGenres[Math.floor(Math.random()*movieDBGenres.length)];
 		queryGenreID = randomizedGenre;
 		getDataFromMovieDBAPI(queryGenreID, getMovieData);
-		/*checkAlreadySuggestedMovies();*/
 		revealSearchResults();
-	})
+		$("html, body").animate({ scrollTop: 0 }, 600);
+    		return false;
+		});
 }
 
 function handleNextSuggestionButton() {
@@ -356,7 +367,9 @@ function handleNextSuggestionButton() {
 		event.preventDefault();
 		/*AlreadySuggested.push(currentMovieTitle);*/
 		pickanothermovie();
-});
+		$("html, body").animate({ scrollTop: 0 }, 600);
+    		return false;
+		});
 }
 
 function handleWatchListButton() {
@@ -377,7 +390,9 @@ function handlePickAnotherGenreButton() {
 		event.preventDefault();
 		hideSearchResults();
 		revealGenreSelectionSection();
-	})
+		$("html, body").animate({ scrollTop: 0 }, 600);
+    		return false;
+		});
 }
 
 function addMovieToWatchlist() {
@@ -386,15 +401,16 @@ function addMovieToWatchlist() {
 	let newestItem = renderMovieToWatchlist(newWatchListMovie);
 	/*let movieList = userWatchList.map((item, index) => renderMovieToWatchlist(item));*/
 	$('.userList').append(newestItem);
-	console.log(movieID);
+	$("html, body").animate({ scrollTop: 0 }, 600);
+    return false;
 }
 
 function renderMovieToWatchlist(moviename) {
-	return `<li> <a href= '' listed-movie-id= ${movieID} class= 'watchListItem'>${moviename}</a></li>`
+	return `<li> <a href= '' listed-movie-id= ${movieID} class= 'watch-list-item'>${moviename}</a></li>`
 }
 
 function showWatchlistMovieInformation() {
-	$('.watch-list').on('click', '.watchListItem', function (event) {
+	$('.watch-list').on('click', '.watch-list-item', function (event) {
 		event.preventDefault();
 		console.log($(this).text());
 		currentMovieTitle = $(this).text();
@@ -418,7 +434,7 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 			pickanothermovie();
 		} else { 
 		$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
-		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
+		<img class= "movie-poster border" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
 		`);
 		$('.movieDB-synopsis').html(`<p class= "movie-score-text"> Rating: <span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p> <p> ${currentMovieData.overview}</p>`);
@@ -440,7 +456,7 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 
 function displayMovieInformation(currentMovieData) {
 	$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
-		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
+		<img class= "movie-poster border" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
 		`);
 	$('.movieDB-synopsis').html(`<p class= "movie-score-text"> Rating: <span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p>
@@ -451,6 +467,7 @@ function displayMovieInformation(currentMovieData) {
 	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 	getReviewsFromMovieDBAPI(movieID, displayUserReviews);
 	hideGenreSelectionSection();
+	revealSearchResults();
 }
 		//this is only for pulliung up watchlist movies
 		//ignores AlreadySuggested array
