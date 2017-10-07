@@ -15,7 +15,8 @@ const newYorkTimes_reviews_URL = "https://api.nytimes.com/svc/movies/v2/reviews/
 let selectedGenre;
 let queryGenreID;
 let currentMovieTitle;
-let currentMovieData;
+let currentMovieData; 
+let projectorText;
 let currentGenreBackground;
 let movieID;
 let movieIndex= 0;
@@ -41,46 +42,63 @@ function selectGenreFromButton () {
 
 function renderGenreBackground () {
 	if (selectedGenre === 'Action') {
-		currentGenreBackground = 'action-background';
+		currentGenreBackground = 'https://cdn1.theyoungfolks.com/wp-content/uploads/2017/05/03231419/avengers-2.jpg';
+		projectorText = "<h2> How about some fighting? <h2>"
 		} else if (selectedGenre === 'Adventure') {
-			currentGenreBackground = 'adventure-background';
+			currentGenreBackground = 'https://s-media-cache-ak0.pinimg.com/originals/57/98/06/579806ee0123a59c35f8b006c15578d5.jpg';
+			projectorText = "<h2> Feeling Adventurous eh? <h2>";
 		} else if (selectedGenre === 'Animation') {
-			currentGenreBackground = 'animation-background';
+			currentGenreBackground = 'https://i.ytimg.com/vi/J6eUjbKA4yw/maxresdefault.jpg';
+			projectorText = "<h2> Let your inner child out! <h2>"
 		} else if (selectedGenre === 'Comedy') {
-			currentGenreBackground = 'adventure-background';
+			currentGenreBackground = 'https://s-media-cache-ak0.pinimg.com/originals/68/15/2c/68152c9904f74bcefd93150786ecafc6.png';
+			projectorText = "<h2> Time for some laughs! <h2>"
 		} else if (selectedGenre === 'Crime') {
-			currentGenreBackground = 'crime-background';
+			currentGenreBackground = 'https://movie-screencaps.com/wp-content/uploads/2017/04/godfather-movie-screencaps.com-.jpg';
+			projectorText = "<h2> Betrayal is the name of the game <h2>"
 		} else if (selectedGenre === 'Documentary') {
-			currentGenreBackground = 'documentary-background';
+			currentGenreBackground = 'https://i.imgur.com/1nIty7I.jpg';
+			projectorText = "<h2> How about learning something new? <h2>"
 		} else if (selectedGenre === 'Drama') {
-			currentGenreBackground = 'drama-background';
+			currentGenreBackground = 'http://screenmusings.org/ForrestGump/images/Forrest-Gump-0100.jpg';
+			projectorText = "<h2> This could get intense... <h2>"
 		} else if (selectedGenre === 'Family') {
-			currentGenreBackground = 'family-background';
+			currentGenreBackground = 'https://typeset-beta.imgix.net/rehost%2F2016%2F9%2F13%2F323d35a7-ec0c-47cd-a4d8-ba28c15ffce9.jpg';
+			projectorText = "<h2> Perfect for all ages! <h2>"
 		} else if (selectedGenre === 'Fantasy') {
-			currentGenreBackground = 'fantasy-background';
+			currentGenreBackground = 'https://geekdad.com/wp-content/uploads/2016/11/DoctorStrange-magic.jpg';
+			projectorText = "<h2> Set your imagination wild! <h2>"
 		} else if (selectedGenre === 'History') {
-			currentGenreBackground = 'history-background';
+			currentGenreBackground = 'https://i3.wp.com/designbypixl.com/wp-content/uploads/2016/05/The-Best-Disney-Movies-of-All-Time-1-2.jpg';
+			projectorText = "<h2> History with a twist <h2>"
 		} else if (selectedGenre === 'Horror') {
-			currentGenreBackground = 'horror-background';
+			currentGenreBackground = 'http://cinemavine.com/wp-content/uploads/2017/07/it-movie-trailer-screencaps-10.png';
+			projectorText = "<h2> So you wanna be scared huh? <h2>"
 		} else if (selectedGenre === 'Music') {
-			currentGenreBackground = 'music-background';
+			currentGenreBackground = 'https://s-media-cache-ak0.pinimg.com/736x/98/37/27/9837277ca6507aa5e984d3971706561b.jpg';
+			projectorText = "<h2> Sing-along time! <h2>"
 		} else if (selectedGenre === 'Mystery') {
-			currentGenreBackground = 'mystery-background';
+			currentGenreBackground = 'http://cdn.collider.com/wp-content/uploads/sherlock-holmes-movie-image-21.jpg';
+			projectorText = "<h2> Put that thinking cap on <h2>"
 		} else if (selectedGenre === 'Romance') {
-			currentGenreBackground = 'romance-background';
+			currentGenreBackground = 'https://vignette2.wikia.nocookie.net/titanic/images/3/3a/Titanic-movie-screencaps.com-22321.jpg/revision/latest?cb=20160822190406';
+			projectorText = "<h2> Witness love at first sight <h2>"
 		} else if (selectedGenre === 'Science Fiction') {
-			currentGenreBackground = 'science-fiction-background';
+			currentGenreBackground = 'http://overmental.com/wp-content/uploads/2015/07/star-wars5-movie-screencaps.com-7202.jpg';
+			projectorText = "<h2> Discover a whole new world <h2>"
 		} else if (selectedGenre === 'TV Movie') {
-			currentGenreBackground = 'TV-movie-background';
+			currentGenreBackground = 'https://assets1.ignimgs.com/thumbs/userUploaded/2016/10/11/blackmirror11280-1476180444633_1280w.jpg';
+			projectorText = "<h2> ...these can be good... <h2>"
 		} else if (selectedGenre === 'Thriller') {
-			currentGenreBackground = 'thriller-background';
+			currentGenreBackground = 'https://moviescene.files.wordpress.com/2014/11/skyfall-movie-screencaps-com-26.jpg';
+			projectorText = "<h2> Twists at every corner <h2>"
 		}
 		/*$('.genre-button-section').addClass(currentGenreBackground);*/
 		//this line will be updated to change the background to the 
 		//matching genre background
 
-		$('.projector-display').html(`<h2> What do you Want to Watch?</h2> 
-				<img src= "https://s-media-cache-ak0.pinimg.com/originals/57/98/06/579806ee0123a59c35f8b006c15578d5.jpg">
+		$('.projector-display').html(`${projectorText} 
+				<img src= ${currentGenreBackground}>
 				`);
 }
 

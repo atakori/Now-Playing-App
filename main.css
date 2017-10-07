@@ -111,17 +111,11 @@ header h1 {
 }
 
 .action-background {
-	 background: url('https://cdn1.theyoungfolks.com/wp-content/uploads/2017/05/03231419/avengers-2.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
+	 'https://cdn1.theyoungfolks.com/wp-content/uploads/2017/05/03231419/avengers-2.jpg'
 }
 
 .adventure-background {
-	 background: url('https://s-media-cache-ak0.pinimg.com/originals/57/98/06/579806ee0123a59c35f8b006c15578d5.jpg') no-repeat center center fixed; 
+	 background: url('https://s-media-cache-ak0.pinimg.com/originals/57/98/06/579806ee0123a59c35f8b006c15578d5.jpg'); 
 	 -webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -131,14 +125,8 @@ header h1 {
 }
 
 .animation-background {
-	 background: url('https://i.ytimg.com/vi/J6eUjbKA4yw/maxresdefault.jpg') no-repeat center center fixed; 
-	 -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	border-top: 40px black solid;
-	border-bottom: 40px black solid;
-}
+	 'https://i.ytimg.com/vi/J6eUjbKA4yw/maxresdefault.jpg'; 
+	}
 
 .comedy-background {
 	 background: url('https://s-media-cache-ak0.pinimg.com/originals/68/15/2c/68152c9904f74bcefd93150786ecafc6.png') no-repeat center center fixed; 
