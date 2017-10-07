@@ -66,9 +66,37 @@ header h1 {
 	border: 2px yellow solid;
 }
 
-.user-review {
-	border: 2px purple solid;
+.watch-list {
+	margin: 10px 0;
+	text-align: center;
+    list-style: none;
 }
+.userList {
+	display:flex;
+	text-align:center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.userList li {
+	width: 20%;
+	margin-bottom: 10px;
+}
+
+
+.watch-list-item {
+	color: red;
+	padding: 2%;
+}
+
+.genre-description {
+	margin-top: 20px;
+}
+
+.genre-name {
+	display: block;
+}
+
 
 .morecontent span {
 	display: none;
@@ -269,14 +297,43 @@ header h1 {
 	width: auto;
 	height: auto;
 	margin-left: 20px;
+	padding: 2%;
+}
+
+.border {
+	border: 1px #c5c5c5 solid;
+	background: -moz-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* ff3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(11,15,18,0.95)), color-stop(100%, rgba(46,46,46,1))); /* safari4+,chrome */
+	background:-webkit-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* safari5.1+,chrome10+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* opera 11.10+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* ie10+ */
+	background:radial-gradient(ellipse at center, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* w3c */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0B0F12', endColorstr='#2E2E2E',GradientType=1 ); /* ie6-9 */
+	margin-right: 2%;
+	margin-left: 2%;
+}
+
+.fullScreenWidthBorder {
+	border-top: 1px #c5c5c5 solid;
+	border-bottom: 1px #c5c5c5 solid;
+}
+
+.greyBackground {
+	background: -moz-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* ff3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(11,15,18,0.95)), color-stop(100%, rgba(46,46,46,1))); /* safari4+,chrome */
+	background:-webkit-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* safari5.1+,chrome10+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* opera 11.10+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* ie10+ */
+	background:radial-gradient(ellipse at center, rgba(11,15,18,0.95) 0%, rgba(46,46,46,1) 100%); /* w3c */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0B0F12', endColorstr='#2E2E2E',GradientType=1 ); /* ie6-9 */
 }
 
 .right-col {
 	float: right;
 	width: 48%;
 	text-align: center;
-/*	margin-left: 2%;
-	margin-right: 2%;*/
+	margin-left: auto%;
+	margin-right: auto%;
 }
 .movieDB-synopsis {
 	padding-left: 3%;
@@ -288,10 +345,20 @@ header h1 {
 	height: 500px;
 	padding-left: 3%;
     padding-right: 3%;
+    margin-top: 10px;
 }
 
-.critics-section h2 {
+iframe {
+	border: 1px #c5c5c5 solid;
+	background: black;
+	padding-top:2%;
+	padding-bottom:2%;
+}
+
+.critics-section {
 	margin-top: 35px;
+}
+.critics-section h2 {
 	text-align: center;
 }
 
@@ -304,15 +371,30 @@ header h1 {
 	color: red;
 }
 
-.user-reviews-header {
-	text-align: center;
-	margin-top: 35px;
+.user-reviews-section {
+	margin-top: 30px;
 }
 
+.user-reviews-header {
+	text-align: center;
+}
+
+
 .user-review {
+	border: 1px red solid;
 	list-style: none;
 }
 
+.watcher-opinions {
+	display:flex;
+}
+
+.watcher-opinions li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 2%;
+    margin-right: 2%;
+}
 
 .bottom-buttons{
 	width: 100%;
@@ -329,14 +411,15 @@ header h1 {
 /**/
 
 a {
-	color: #0254EB
+	color: red
 }
 a:visited {
-	color: #0254EB
+	color: red
 }
 a.morelink {
 	text-decoration:none;
 	outline: none;
+	color: red;
 }
 
 
@@ -359,6 +442,43 @@ a.morelink {
 
 }
 
-@media (max-width: 843px) {
+@media (max-width: 1100px) {
+	.movie-info {
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
 
+	.movie-header {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.movie-title {
+	margin-left: 0px;
+}
+
+.movie-poster {
+	display: inline-block;
+	max-width: 100%;
+	max-height: 800px;
+	width: auto;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2%;
+	margin-bottom: 15px;
+}
+
+	.right-col {
+	float: none;
+	width: 100%;
+	text-align: center;
+	}
+
+	.bottom-buttons button {
+	width: 100%;
+}
 }
