@@ -133,6 +133,7 @@ function changeGenreIntoGenreID (data) {
 	//return the id <<WORKS>>
 }
 
+
 function getGenreIDfromAPI (query, callback) {
 	let dataRequest = {
 		api_key: 'a916990541912af1edec4ebbf21fc10f',
@@ -373,11 +374,17 @@ function handleRandomMovieButton() {
 		movieIndex = 0;
 		let randomizedGenre = movieDBGenres[Math.floor(Math.random()*movieDBGenres.length)];
 		queryGenreID = randomizedGenre;
+		getGenreIDfromAPI(queryGenreID, changeGenreIDIntoGenre);
 		getDataFromMovieDBAPI(queryGenreID, getMovieData);
 		revealSearchResults();
 		$("html, body").animate({ scrollTop: 0 }, 600);
     		return false;
 		});
+}
+
+function changeGenreIDIntoGenre (data) {
+	let genreName = data.genres.find(obj => obj.id === queryGenreID)
+	selectedGenre = genreName.name;
 }
 
 function handleNextSuggestionButton() {
@@ -456,7 +463,6 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 		`);
 		$('.movieDB-synopsis').html(`<p class= "movie-score-text"> <i class="fa fa-star" aria-hidden="true"></i> <span class= 'underline'>  Rating:</span> <i class="fa fa-star" aria-hidden="true"></i><span class= "movie-score">
 		${currentMovieData.vote_average} </span> </p> <p> ${currentMovieData.overview}</p>`);
-
 		$('.genre-type-info').html(showSelectedGenre);
 
 		AlreadySuggested.push(currentMovieTitle);
