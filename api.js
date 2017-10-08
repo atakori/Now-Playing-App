@@ -496,6 +496,22 @@ function displayMovieInformation(currentMovieData) {
 		//this is only for pulliung up watchlist movies
 		//ignores AlreadySuggested array
 
+/*About Me Modal Popup*/
+// Get the modal
+var modal = document.getElementById('myModal');
+
+function closeModal() {
+	$('.modal-content').on('click', '.close-modal-button', function (event) {
+		event.preventDefault();
+		modal.style.display = "none";
+	})
+}
+
+function openAboutMe() {
+	modal.style.display = "block";
+}
+
+$(closeModal());
 $(selectGenreFromButton());
 $(searchMovie());
 $(handleRandomMovieButton());
@@ -506,3 +522,4 @@ $(handlePickAnotherGenreButton());
 $(showLimitedWordsForReview());
 hideSearchResults();
 hideWatchList();
+openAboutMe();
