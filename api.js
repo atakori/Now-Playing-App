@@ -498,12 +498,14 @@ function displayMovieInformation(currentMovieData) {
 
 /*About Me Modal Popup*/
 // Get the modal
-var modal = document.getElementById('myModal');
+let modal = document.getElementById('myModal');
+let overlay = document.getElementById('overlay');
 
 function closeModal() {
 	$('.modal-content').on('click', '.close-modal-button', function (event) {
 		event.preventDefault();
 		modal.style.display = "none";
+		overlay.style.display = "none";
 	})
 }
 
