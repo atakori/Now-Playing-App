@@ -9,8 +9,6 @@ let movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/movieID/reviews";
 const youtube_search_URL = "https://www.googleapis.com/youtube/v3/search";
 const newYorkTimes_reviews_URL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
 
-//contains the movies that the user is not interested in 
-//watching
 
 let selectedGenre;
 let queryGenreID;
@@ -20,11 +18,10 @@ let projectorText;
 let currentGenreBackground;
 let movieID;
 let movieIndex= 0;
+let modal = document.getElementById('myModal');
+let overlay = document.getElementById('overlay');
 let movieDBGenres = [28,12,16,35,80,99,18,10751,14,36,27, 10402,9648,
 					 10749,878,10770,53,10752,37];
-					 // this should be made directly from the API
-					 //in case any are added in the future
-					 // -- not likely but just in case
 
 function selectGenreFromButton () {
 	$('.movie-search-form').on('click', '.genre-button', function (event) {
@@ -33,10 +30,7 @@ function selectGenreFromButton () {
 		$('button.highlightGenreButton').removeClass('highlightGenreButton');
 		$(this).addClass('highlightGenreButton');
 		$('.genre-button-section').removeClass(currentGenreBackground);
-		//will want to get a css animation for more effectively showing
-		//the currently selected genre
 		renderGenreBackground();
-		console.log(selectedGenre);
 		});
 	};
 
@@ -93,17 +87,13 @@ function renderGenreBackground () {
 			currentGenreBackground = 'https://moviescene.files.wordpress.com/2014/11/skyfall-movie-screencaps-com-26.jpg';
 			projectorText = "<h2> Twists at every corner <h2>"
 		}
-		/*$('.genre-button-section').addClass(currentGenreBackground);*/
-		//this line will be updated to change the background to the 
+		//this function will be updated to change the background to the 
 		//matching genre background
 
 		$('.projector-display').html(`${projectorText} 
 				<img src= ${currentGenreBackground}>
 				`);
 }
-
-/*<div width= "100% height= "500px" class= ${currentGenreBackground}> </div>*/
-
 
 function resetCSSAnimation(id) {
 	let element = document.getElementById(id);
@@ -114,35 +104,27 @@ function resetCSSAnimation(id) {
 function searchMovie () {
 	$('.movie-search-form').on('click', '.search-button', function(event) {
 		event.preventDefault();
-		/*console.log(selectedGenre);*/
-		/*selectedGenre= $('.search-query').val();*/
-		console.log(selectedGenre);
 		if (selectedGenre !== undefined) {
 		getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
 		revealSearchResults();
 		} else {
 			resetCSSAnimation('genre-title');
 			$('.genre-section-title').addClass('animated shake');
-			console.log('no genre selected');
 		}
 	})
 	//this is to be used with for the '.search-button'
 	//will prevent the form from being submitted and
 	//will get the user inputted genre
-
 	//Movie DB sorts genres by assigning genre-id's 
 }
 
 function changeGenreIntoGenreID (data) {
-	/*let movieGenre= data.genres.filter( obj => obj.name.toLowerCase() === selectedGenre.toLowerCase());*/
 	let movieGenre= data.genres.find(obj => obj.name.toLowerCase() === selectedGenre.toLowerCase());
 	queryGenreID = movieGenre.id;
 	getDataFromMovieDBAPI(queryGenreID, getMovieData);
-	console.log(queryGenreID);
-	/*console.log(queryGenreID);*/
 	//needs to access genre /movie list and pull
 	//the cooresponding genre id
-	//return the id <<WORKS>>
+	//return the id
 }
 
 
@@ -160,8 +142,6 @@ function getDataFromMovieDBAPI(query, callback) {
 		sort_by: 'popularity.desc',
 		with_genres: query,
 		page: 1
-		//need to figure out which page should be selected
-		//might need to further narrow search results via year
 	}
 
 	$.getJSON(movieDB_search_URL, dataRequest, callback)
@@ -175,12 +155,8 @@ function getDataFromMovieDBAPI(query, callback) {
 function getSpecificMovieFromMovieDBAPI (movieID, callback) {
 	let dataRequest = {
 		api_key: 'a916990541912af1edec4ebbf21fc10f'
-		/*movie_id: movieID*/
-		//need to figure out which page should be selected
-		//might need to further narrow search results via year
 	}
 	movieDB_movie_search_URL = "https://api.themoviedb.org/3/movie/" + movieID;
-	console.log(movieDB_movie_search_URL);
 	$.getJSON(movieDB_movie_search_URL, dataRequest, callback)
 }
 
@@ -191,8 +167,6 @@ function getReviewsFromMovieDBAPI(moviesID, callback) {
 		page: 1
 		//this is used to get the user movie reviews from Movie DB
 	}
-	console.log(moviesID);
-
 	$.getJSON(movieDB_reviews_URL, dataRequest, callback);
 }
 
@@ -207,21 +181,17 @@ function getDataFromNYTimesAPI (movieTitle, callback) {
 
 function displayNYTimesReviews(reviewData) {
 	let reviewInfo = reviewData.results[0];
-	console.log(reviewInfo);
 	if (reviewInfo === undefined) {
 		$('.critics-section').hide();
 	} else {
 	let NYTimesReview= renderCriticReview(reviewInfo);
-	console.log(NYTimesReview);
 	$('.critics-section').html(NYTimesReview);
 	}
-	//this is used to display the user reviews from MovieDB
-	// and/or filmcrave.com
+	//this is used to display the critic reviews from MovieDB
 }
 
 function displayUserReviews(movieDBReviewData) {
 	let movieDBReviews = movieDBReviewData.results.map((item, index) => renderUserReviews(item,index));
-	console.log(movieDBReviewData);
 	$('.watcher-opinions').html(movieDBReviews);
 	showLimitedWordsForReview();
 	$('.watcher-opinions').parent().show();
@@ -230,7 +200,6 @@ function displayUserReviews(movieDBReviewData) {
 	// and does not display parent container if nothing was pulled
 	
 	//This is used to display the user reviews from MovieDB
-	// and/or filmcrave.com
 }
 
 function renderCriticReview(criticReview) {
@@ -244,18 +213,8 @@ function renderCriticReview(criticReview) {
 	<li class= NY-times-review> ${criticReview.summary_short} 
 	<div> <a href= ${criticReview.link.url}> Read Full Review </a></div>
 	<div> Review by: ${criticReview.byline}</div></li>`
+	}
 }
-}
-
-/*function renderUserReviews(userReview, indexNum) {
-	  if (indexNum % 2 === 0) {
-	  	return `<li class= "user-review user-review-right more"> ${userReview.content} 
-	  | Review by: ${userReview.author} </li>`
-	  } else {
-	  	return `<li class= "user-review user-review-left more"> ${userReview.content} 
-	  | Review by: ${userReview.author} </li>`
-	  }
-}*/
 
 function renderUserReviews(userReview, indexNum) {
 	  	return `<li class= "user-review more"> ${userReview.content} 
@@ -296,6 +255,9 @@ function showLimitedWordsForReview() {
 		return false;
 	});
 }
+	//this function makes it so that the user reviews
+	//are not completely shown (max of ) characters)
+	//unless a show more button is clicked by the user
 
 function getDataFromYoutubeAPI(movieName, callback) {
 	let dataRequest= {
@@ -307,10 +269,6 @@ function getDataFromYoutubeAPI(movieName, callback) {
 	}
 
 	$.getJSON(youtube_search_URL, dataRequest, callback);
-	//calls the callback function by using .getJSON();
-	//same as getDataFromMovieDBAPI, but to be applied to
-	//the Youtube API
-	// calls showMovieTrailer()
 }
 
 function getMovieData (data) {
@@ -320,21 +278,6 @@ function getMovieData (data) {
 	currentMovieData = data.results[movieIndex];
 	currentMovieTitle = currentMovieData.title 
 	checkAlreadySuggestedMovies(currentMovieData);
-	//makes sure it is not recommending a movie already seen
-
-
-	/*$('.movie-header').html(`<h2 class= "movie-title"> ${currentMovieData.title} </h2>
-		<img class= "movie-poster" src= ${movieDB_poster_URL}${currentMovieData.poster_path}>
-		<p class= "movie-score-text"> Rating: <span class= "movie-score">
-		${currentMovieData.vote_average} </span> </p>`);
-	$('.movieDB-synopsis').html(`<p> ${currentMovieData.overview}</p>`);*/
-	//takes the array from getDataFromMovieDBAPI(query)
-	//randomizes which movie object information to 
-	//to display all of the relevent information 
-	//in '.movie-info
-	//random.math up to # of results???
-	//or just increases the array[i] number each time 
-	//pickanothermovie() is run
 }
 
 function showMovieTrailer(youtubeData) {
@@ -356,8 +299,6 @@ function showSelectedGenre () {
 
 function hideSearchResults() {
 	$('.movie-info').hide();
-	//hides all movie sections if nothing has 
-	//been search yet
 }
 
 function hideGenreSelectionSection() {
@@ -412,7 +353,6 @@ function handleNextSuggestionButton() {
 function handleWatchListButton() {
 	$('.movie-search-form').on('click', '.watch-list-button', function (event) {
 		event.preventDefault();
-		console.log('WORKS');
 		if(userWatchList.find(movie => movie === currentMovieTitle)) {
 			console.log('movie already in database');
 		} else {
@@ -449,22 +389,15 @@ function renderMovieToWatchlist(moviename) {
 function showWatchlistMovieInformation() {
 	$('.watch-list').on('click', '.watch-list-item', function (event) {
 		event.preventDefault();
-		console.log($(this).text());
 		currentMovieTitle = $(this).text();
 		movieID= $(this).attr('listed-movie-id');
 		getSpecificMovieFromMovieDBAPI(movieID, displayMovieInformation);
-	/*	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
-		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);*/
 	});
 }
 
 function pickanothermovie() {
 	getDataFromMovieDBAPI(queryGenreID, getMovieData);
-	};
-	//add the movie to the AlreadySuggested array
-	// prevent form submission for '.next-movie-button'
-	//runs getMovieData() again
-	//again
+	}
 
 function checkAlreadySuggestedMovies(currentMovieData) {
 	if (AlreadySuggested.find(movie => movie === currentMovieTitle)) {
@@ -480,13 +413,11 @@ function checkAlreadySuggestedMovies(currentMovieData) {
 		AlreadySuggested.push(currentMovieTitle);
 		//this line adds the movie to the list of already shown movies
 		movieID = currentMovieData.id;
-		console.log(movieID);
 		movieDB_reviews_URL = "https://api.themoviedb.org/3/movie/" + movieID + "/reviews";
 		getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 		getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 		getReviewsFromMovieDBAPI(movieID, displayUserReviews);
 		hideGenreSelectionSection();
-
 		}
 	};
 
@@ -498,20 +429,16 @@ function displayMovieInformation(currentMovieData) {
 		${currentMovieData.vote_average} </span> </p>
 		<p> ${currentMovieData.overview}</p>`);
 	$('.genre-type-info').html(showSelectedGenre);
-	console.log(currentMovieTitle);
 	getDataFromYoutubeAPI(currentMovieTitle, showMovieTrailer);
 	getDataFromNYTimesAPI(currentMovieTitle, displayNYTimesReviews);
 	getReviewsFromMovieDBAPI(movieID, displayUserReviews);
 	hideGenreSelectionSection();
 	revealSearchResults();
 }
-		//this is only for pulliung up watchlist movies
+		//this function is only for pulling up watchlist movies
 		//ignores AlreadySuggested array
 
 /*About Me Modal Popup*/
-// Get the modal
-let modal = document.getElementById('myModal');
-let overlay = document.getElementById('overlay');
 
 function closeModal() {
 	$('.modal-content').on('click', '.close-modal-button', function (event) {
