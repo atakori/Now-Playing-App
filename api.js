@@ -105,14 +105,26 @@ function renderGenreBackground () {
 /*<div width= "100% height= "500px" class= ${currentGenreBackground}> </div>*/
 
 
+function resetCSSAnimation(id) {
+	let element = document.getElementById(id);
+	let newone = element.cloneNode(true);
+	element.parentNode.replaceChild(newone, element);
+}
+
 function searchMovie () {
 	$('.movie-search-form').on('click', '.search-button', function(event) {
 		event.preventDefault();
 		/*console.log(selectedGenre);*/
 		/*selectedGenre= $('.search-query').val();*/
 		console.log(selectedGenre);
+		if (selectedGenre !== undefined) {
 		getGenreIDfromAPI(selectedGenre, changeGenreIntoGenreID);
 		revealSearchResults();
+		} else {
+			resetCSSAnimation('genre-title');
+			$('.genre-section-title').addClass('animated shake');
+			console.log('no genre selected');
+		}
 	})
 	//this is to be used with for the '.search-button'
 	//will prevent the form from being submitted and

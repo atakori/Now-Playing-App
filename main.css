@@ -9,6 +9,17 @@ body {
   -o-background-size: cover;
   background-size: cover;
   color: white;
+  position: relative;
+}
+
+.page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
 }
 
 header h1 {
@@ -318,6 +329,20 @@ li.NY-times-review {
 
 .bottom-buttons button {
 	width: 23%;
+}
+
+footer {
+	text-align: center;
+	font-family: 'Martel', serif;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  margin-top: 200px;
+}
 }
 
 
