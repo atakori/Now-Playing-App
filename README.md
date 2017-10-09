@@ -13,17 +13,7 @@ list of discovered movies that they would like to view movie information for aga
 searching for new movies.
 
 ![alt text](https://github.com/atakori/Now-Playing-App/blob/master/ScreenShots/Genre%20Selection.PNG)
-
-
-
-
-
-
-
-
-
-
-
+![alt text](https://github.com/atakori/Now-Playing-App/blob/master/ScreenShots/Movie%20Information.PNG)
 
 
 
