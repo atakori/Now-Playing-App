@@ -145,11 +145,6 @@ function getDataFromMovieDBAPI(query, callback) {
 	}
 
 	$.getJSON(movieDB_search_URL, dataRequest, callback)
-	// this will get the value from searchMovie() to 
-	//be used as a search term (query) in the MovieDBAPI results
-	//shows movie information
-	//calls getMovieData()
-	//calls showMovieTrailer()
 }
 
 function getSpecificMovieFromMovieDBAPI (movieID, callback) {
@@ -165,7 +160,6 @@ function getReviewsFromMovieDBAPI(moviesID, callback) {
 		api_key:'a916990541912af1edec4ebbf21fc10f',
 		movie_id: moviesID,
 		page: 1
-		//this is used to get the user movie reviews from Movie DB
 	}
 	$.getJSON(movieDB_reviews_URL, dataRequest, callback);
 }
