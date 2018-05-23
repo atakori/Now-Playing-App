@@ -1,7 +1,7 @@
 <h1>Now Playing</h1>
 
 <h2>Summary</h2> 
-<p>Now Playing is an app for people who just can't decide on what movie to watch. 
+<p><a href= "https://atakori.github.io/Now-Playing-App/">Now Playing</a> is an app for people who just can't decide on what movie to watch. 
 Whether that's by indecisiveness or the fact that there are hundreds of movies out there, 
 we won't judge! As a random movie generator, Now Playing selects movies based off of a user 
 selected genre to give you movie information, trailers, ratings, and reviews to help you find 
